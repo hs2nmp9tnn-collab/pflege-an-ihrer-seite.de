@@ -1,0 +1,85 @@
+==============================================
+  AN IHRER SEITE – Website online stellen
+==============================================
+
+In diesem Ordner liegen 3 Dateien:
+  - index.html       (die Startseite)
+  - impressum.html   (Impressum)
+  - datenschutz.html (Datenschutzerklaerung)
+
+Bitte IMMER alle 3 Dateien zusammen im selben Ordner lassen.
+
+
+----------------------------------------------
+SCHRITT 1: Sofort online stellen (kostenlos, ohne Konto)
+----------------------------------------------
+
+1. Diesen Ordner "an-ihrer-seite" auf den Schreibtisch entpacken
+   (Doppelklick auf die ZIP-Datei).
+
+2. Im Browser oeffnen:  app.netlify.com/drop
+
+3. Den kompletten Ordner "an-ihrer-seite" auf die grosse Flaeche
+   in der Mitte der Seite ziehen (Drag & Drop).
+
+4. Nach ein paar Sekunden erscheint eine Live-Adresse, z. B.
+   https://zufallsname-12345.netlify.app
+   -> Diese Adresse koennen Sie sofort teilen. Fertig!
+
+
+----------------------------------------------
+SCHRITT 2: Dauerhaft + schoener Name (kostenloses Konto)
+----------------------------------------------
+
+Damit die Seite dauerhaft online bleibt und einen schoenen Namen bekommt:
+
+1. Auf netlify.com oben rechts "Sign up" -> kostenloses Konto anlegen
+   (z. B. mit E-Mail oder Google).
+2. Die Seite wie in Schritt 1 hochladen (oder mit dem Konto verknuepfen).
+3. Unter "Site settings" -> "Change site name" einen Namen vergeben, z. B.
+   an-ihrer-seite  ->  https://an-ihrer-seite.netlify.app
+
+
+----------------------------------------------
+SCHRITT 3 (optional): Eigene Domain wie an-ihrer-seite.de
+----------------------------------------------
+
+Eine eigene .de-Domain kostet ca. 5-15 Euro pro Jahr. Schritte:
+
+1. Domain pruefen und kaufen bei einem Anbieter, z. B.:
+   - united-domains.de
+   - ionos.de
+   - inwx.de
+   Suchen Sie nach:  an-ihrer-seite.de
+   Falls vergeben, Alternativen:
+   - an-ihrer-seite-pflege.de
+   - pflege-an-ihrer-seite.de
+   - anihrerseite.de
+
+2. In Netlify: "Domain settings" -> "Add a domain" -> Ihre Domain eintragen.
+3. Netlify zeigt Ihnen die noetigen DNS-Eintraege (oder bietet an, die
+   Domain zu uebernehmen). Diese beim Domain-Anbieter eintragen.
+4. Nach kurzer Wartezeit ist die Seite unter Ihrer eigenen Domain
+   erreichbar - inkl. kostenlosem SSL (https).
+
+
+----------------------------------------------
+WICHTIG: Vor dem echten Start noch erledigen
+----------------------------------------------
+
+1. AFFILIATE-LINKS einsetzen:
+   In der Datei index.html stehen ganz oben im <script>-Bereich zwei
+   Platzhalter-Links:
+        AFFILIATE_BOX_URL    = "https://partner-platzhalter.de/pflegebox..."
+        AFFILIATE_NOTRUF_URL = "https://partner-platzhalter.de/hausnotruf..."
+   Ersetzen Sie diese durch Ihre echten Partner-Links (Pflegebox-Anbieter,
+   Hausnotruf-Anbieter), damit Sie an Vermittlungen verdienen.
+
+2. Impressum & Datenschutz sind bereits mit Ihren Daten ausgefuellt,
+   Hosting-Anbieter "Netlify" ist eingetragen. Wenn Sie einen ANDEREN
+   Hoster nehmen, passen Sie den Hosting-Abschnitt in datenschutz.html an.
+
+3. Tipp: Bewahren Sie diesen Ordner gut auf - Aenderungen machen Sie
+   einfach in den HTML-Dateien und laden den Ordner erneut bei Netlify hoch.
+
+Viel Erfolg!

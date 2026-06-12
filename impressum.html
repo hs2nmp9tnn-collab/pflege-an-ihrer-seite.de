@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum – An Ihrer Seite</title>
+<style>
+  :root{--green:#1f7a63;--green-dark:#155845;--green-soft:#e7f3ef;--ink:#1c2826;--muted:#566461;--bg:#fbfaf7;--line:#e3e7e5;--radius:16px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:18px;line-height:1.65}
+  .wrap{max-width:780px;margin:0 auto;padding:0 22px}
+  header.nav{background:#fff;border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;height:66px}
+  .logo{display:flex;align-items:center;gap:.55em;font-weight:800;font-size:1.2rem;color:var(--ink);text-decoration:none}
+  .logo .mark{width:32px;height:32px;border-radius:9px;background:var(--green);display:grid;place-items:center;color:#fff;font-weight:800}
+  h1{font-size:2rem;margin:0 0 .2em}
+  h2{font-size:1.25rem;margin:1.8em 0 .4em;color:var(--green-dark)}
+  p{margin:0 0 .8em}
+  a{color:var(--green-dark)}
+  .tag{color:var(--muted);margin-bottom:1.5em}
+  .fill{background:#fff7e9;border:1px solid #f0dcb6;border-radius:12px;padding:16px 18px;color:#7a5b1e;font-size:.95rem;margin:1.4em 0}
+  .placeholder{background:var(--green-soft);border-radius:5px;padding:1px 7px;color:var(--green-dark);font-weight:600}
+  .back{display:inline-block;margin:30px 0;color:var(--green-dark);text-decoration:none;font-weight:600}
+  footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px;padding:22px 0}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner"><a class="logo" href="index.html"><span class="mark">♥</span> An Ihrer Seite</a></div></header>
+
+<main class="wrap">
+  <h1>Impressum</h1>
+  <p class="tag">Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>
+
+
+  <h2>Diensteanbieter</h2>
+  <p>
+    Maximilian Pfeffer<br>
+    Friedrich-Ebert-Straße 13a<br>
+    36266 Heringen<br>
+    Deutschland
+  </p>
+
+  <h2>Kontakt</h2>
+  <p>
+    Telefon: +49 176 42091021<br>
+    E-Mail: pfeffermaximilian@web.de
+  </p>
+
+  <h2>Redaktionell verantwortlich</h2>
+  <p>
+    Verantwortlich für den Inhalt nach § 18 Abs. 2 Medienstaatsvertrag (MStV):<br>
+    Maximilian Pfeffer<br>
+    Friedrich-Ebert-Straße 13a, 36266 Heringen
+  </p>
+
+  <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+  <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+  <h2>Haftung für Inhalte</h2>
+  <p>Die Inhalte dieser Seite wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Die bereitgestellten Informationen dienen ausschließlich der allgemeinen Orientierung und ersetzen keine individuelle ärztliche, rechtliche oder sozialrechtliche Beratung sowie keine offizielle Pflegebegutachtung. Alle genannten Beträge und Regelungen beziehen sich auf den Stand 2026 und können sich ändern.</p>
+
+  <h2>Haftung für Links</h2>
+  <p>Unser Angebot enthält ggf. Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Bei Bekanntwerden von Rechtsverletzungen entfernen wir derartige Links umgehend.</p>
+
+  <h2>Urheberrecht</h2>
+  <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet.</p>
+
+  <h2>Hinweis zu Affiliate-Links</h2>
+  <p>Diese Website enthält ggf. Empfehlungs- bzw. Affiliate-Links. Schließen Sie über einen solchen Link einen Vertrag mit einem Anbieter ab, erhalten wir unter Umständen eine Vergütung. Für Sie entstehen dadurch keine zusätzlichen Kosten.</p>
+
+  <a class="back" href="index.html">← Zurück zur Startseite</a>
+</main>
+
+<footer><div class="wrap">© <span id="yr"></span> An Ihrer Seite — Pflege gemeinsam meistern.</div></footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>

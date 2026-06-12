@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Ihrer Seite – Pflege gemeinsam meistern</title>
+<meta name="description" content="Kostenlos und verständlich: Welche Pflegeleistungen stehen Ihnen zu? Der Pflege-Assistent erklärt alles, gibt konkrete Empfehlungen und erstellt fertige Anträge. Ihre Daten bleiben auf Ihrem Gerät.">
+<style>
+  :root{
+    --green:#1f7a63;--green-dark:#155845;--green-soft:#e7f3ef;
+    --ink:#1c2826;--muted:#566461;--bg:#fbfaf7;--card:#fff;--line:#e3e7e5;
+    --gold:#c98a2b;--radius:16px;--shadow:0 6px 24px rgba(20,40,35,.08);--maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.2;letter-spacing:-.01em}
+  h1{font-size:clamp(2rem,4.5vw,3.1rem);margin:0 0 .4em}
+  h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:0 0 .5em}
+  h3{font-size:1.25rem;margin:0 0 .35em}
+  p{margin:0 0 1em}
+  a{color:var(--green-dark)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .btn{display:inline-flex;align-items:center;gap:.5em;cursor:pointer;border:0;background:var(--green);color:#fff;
+    font-size:1.05rem;font-weight:600;padding:.9em 1.5em;border-radius:999px;text-decoration:none;transition:.18s}
+  .btn:hover{background:var(--green-dark);transform:translateY(-1px)}
+  .btn.secondary{background:#fff;color:var(--green-dark);border:1.5px solid var(--line)}
+  .btn.secondary:hover{border-color:var(--green);background:var(--green-soft)}
+  .btn.big{font-size:1.2rem;padding:1.05em 1.9em}
+
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:.55em;font-weight:800;font-size:1.25rem;color:var(--ink);text-decoration:none}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:var(--green);display:grid;place-items:center;color:#fff;font-weight:800}
+  .nav-links{display:flex;gap:1.4em;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-weight:500;font-size:1rem}
+  .nav-links a:hover{color:var(--green-dark)}
+  .nav-links a.btn{color:#fff}
+  .nav-links a.btn:hover{color:#fff}
+  @media(max-width:820px){.nav-links a:not(.btn){display:none}}
+
+  .hero{padding:60px 0 36px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:28px}}
+  .eyebrow{display:inline-block;background:var(--green-soft);color:var(--green-dark);font-weight:600;font-size:.95rem;padding:.4em 1em;border-radius:999px;margin-bottom:1.1em}
+  .hero p.lead{font-size:1.22rem;color:var(--muted);max-width:36ch}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:1.4em}
+  .trust-row{display:flex;gap:1.4em;flex-wrap:wrap;margin-top:1.8em;color:var(--muted);font-size:.98rem}
+  .trust-row span{display:flex;align-items:center;gap:.45em}
+  .check-ic{color:var(--green);font-weight:800}
+  .hero-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
+  .hero-card h3{color:var(--green-dark)}
+  .mini-list{list-style:none;padding:0;margin:.4em 0 0}
+  .mini-list li{display:flex;justify-content:space-between;gap:1em;padding:.6em 0;border-bottom:1px dashed var(--line);font-size:1rem}
+  .mini-list li:last-child{border-bottom:0}
+  .mini-list b{color:var(--green-dark);white-space:nowrap}
+
+  section{padding:50px 0}
+  .section-head{max-width:64ch;margin-bottom:30px}
+  .section-head p{color:var(--muted);font-size:1.1rem}
+  .alt{background:var(--green-soft)}
+
+  .phasebar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px}
+  @media(max-width:760px){.phasebar{grid-template-columns:1fr}}
+  .phase{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .phase b{color:var(--green-dark)}
+  .phase span{display:inline-block;font-size:.8rem;font-weight:700;color:#fff;background:var(--green);border-radius:6px;padding:1px 8px;margin-bottom:8px}
+  .phase p{font-size:.95rem;color:var(--muted);margin:.3em 0 0}
+
+  /* ASSISTANT */
+  .chat-shell{max-width:920px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+  .chat-top{background:var(--green);color:#fff;padding:15px 22px;display:flex;align-items:center;gap:.7em}
+  .chat-top .dot{width:11px;height:11px;border-radius:50%;background:#7fe3c4}
+  .chat-top b{font-size:1.05rem}
+  .chat-top span{margin-left:auto;font-size:.85rem;opacity:.9}
+  .progress{height:6px;background:var(--green-soft)}
+  .progress>i{display:block;height:100%;background:var(--green);width:0;transition:width .4s}
+  .chat-body{padding:26px;min-height:480px;max-height:76vh;overflow-y:auto}
+  .bubble{max-width:92%;padding:14px 16px;border-radius:16px;margin-bottom:14px;font-size:1.04rem;line-height:1.55}
+  .bubble.bot{background:var(--green-soft);color:var(--ink);border-bottom-left-radius:4px}
+  .bubble.user{background:var(--green);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+  .bubble h4{margin:.1em 0 .4em;font-size:1.12rem;color:var(--green-dark)}
+  .bubble .kv{display:flex;gap:.5em;font-size:.97rem;margin:.25em 0}
+  .bubble .kv b{min-width:104px;color:var(--green-dark)}
+  .bubble .rec{background:#fff;border-left:3px solid var(--green);padding:10px 12px;border-radius:8px;margin-top:10px;font-size:.98rem}
+  .opts{display:flex;flex-wrap:wrap;gap:9px;margin:2px 0 18px}
+  .opt{cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:.55em 1em;font-size:.98rem;font-weight:500;transition:.15s}
+  .opt:hover{border-color:var(--green);background:var(--green-soft);color:var(--green-dark)}
+  .opt.cat{background:var(--green-soft);border-color:transparent;color:var(--green-dark);font-weight:700}
+  .chat-input{display:flex;gap:10px;padding:15px 22px;border-top:1px solid var(--line);background:#fff}
+  .chat-input input{flex:1;font-size:1.05rem;padding:.7em 1em;border:1.5px solid var(--line);border-radius:12px}
+  .chat-input input:focus{outline:0;border-color:var(--green)}
+  .privacy-chip{display:flex;align-items:center;justify-content:center;gap:.5em;color:var(--muted);font-size:.92rem;margin-top:14px}
+  .letterbox{background:#fbfaf7;border:1px dashed var(--line);border-radius:12px;padding:18px;white-space:pre-wrap;font-size:1rem;line-height:1.6;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin-top:8px}
+  .letterbox.serif{font-family:Georgia,"Times New Roman",serif}
+  .letterbox.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .inline-actions{display:flex;gap:9px;flex-wrap:wrap;margin:2px 0 18px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .card .amt{font-size:1.55rem;font-weight:800;color:var(--green-dark);margin:.1em 0}
+  .card .amt small{font-size:.92rem;color:var(--muted);font-weight:500}
+  .card p{font-size:1rem;color:var(--muted);margin:0}
+  .pill-ic{width:46px;height:46px;border-radius:12px;background:var(--green-soft);display:grid;place-items:center;font-size:1.5rem;margin-bottom:12px}
+  .tile{cursor:pointer;transition:.16s}
+  .tile:hover{border-color:var(--green);box-shadow:var(--shadow);transform:translateY(-2px)}
+  .tile .more{display:inline-block;margin-top:12px;color:var(--green-dark);font-weight:700;font-size:.95rem}
+  .kasse{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+  .kasse h3{margin:0 0 .4em;color:var(--green-dark);font-size:1.1rem}
+  .kasse .kv{display:flex;gap:.5em;font-size:.97rem;margin:.25em 0}
+  .kasse .kv b{min-width:92px;color:var(--green-dark)}
+
+  .steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;left:22px;width:34px;height:34px;background:var(--green);color:#fff;border-radius:50%;display:grid;place-items:center;font-weight:800}
+  .step h3{margin-top:8px;font-size:1.1rem}
+  .step p{font-size:.98rem;color:var(--muted);margin:0}
+
+  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.contact-grid{grid-template-columns:1fr}}
+  .contact-grid .card .big-num{font-size:1.4rem;font-weight:800;color:var(--green-dark)}
+
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 20px;margin-bottom:12px}
+  details summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-size:1.5rem;color:var(--green)}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--muted);padding-bottom:10px;margin:0}
+
+  .promo{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.promo{grid-template-columns:1fr}}
+  .promo .card{display:flex;gap:16px;align-items:flex-start}
+  .ad-tag{font-size:.72rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+
+  footer{background:var(--ink);color:#cdd6d3;padding:46px 0 30px;font-size:.95rem}
+  footer h4{color:#fff;margin:0 0 .6em;font-size:1rem}
+  footer a{color:#9fd9c7;text-decoration:none}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+  .disclaimer{border-top:1px solid #33433f;margin-top:28px;padding-top:18px;font-size:.85rem;color:#8ea29c}
+  .note{background:#fff7e9;border:1px solid #f0dcb6;border-radius:12px;padding:14px 18px;font-size:.95rem;color:#7a5b1e}
+  @media print{header.nav,.hero,.promo,footer,.chat-input,.nav,.no-print{display:none!important}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top"><span class="mark">♥</span> An Ihrer Seite</a>
+    <nav class="nav-links">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#assistent">Assistent</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#kontakt">Kontakt</a>
+      <a class="btn" href="#assistent">Jetzt prüfen</a>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Kostenlos · ohne Anmeldung · Ihre Daten bleiben bei Ihnen</span>
+      <h1>Diese Leistungen stehen Ihnen zu – in 5 Minuten zur Antwort</h1>
+      <p class="lead">Welche Hilfe steht Ihnen oder Ihren Angehörigen zu? Unser Pflege-Assistent beantwortet jede Frage, gibt eine konkrete Empfehlung und erstellt Ihren fertigen Antrag zum Absenden.</p>
+      <div class="hero-cta">
+        <a class="btn big" href="#assistent">Pflege-Assistent öffnen</a>
+        <a class="btn secondary big" href="#leistungen">Überblick ansehen</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Das kann Ihnen 2026 zustehen</h3>
+      <p style="color:var(--muted);font-size:.98rem;margin:.2em 0 .6em">Beispiele bei Pflege zu Hause (je nach Pflegegrad):</p>
+      <ul class="mini-list">
+        <li>Pflegegeld monatlich <b>bis 990 €</b></li>
+        <li>Pflegesachleistungen monatlich <b>bis 2.299 €</b></li>
+        <li>Entlastungsbetrag monatlich <b>131 €</b></li>
+        <li>Pflegehilfsmittel monatlich <b>bis 42 €</b></li>
+        <li>Verhinderungs-/Kurzzeitpflege jährlich <b>3.539 €</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DREI PHASEN -->
+<section style="padding-top:10px">
+  <div class="wrap">
+    <div class="phasebar">
+      <div class="phase"><span>Phase 1</span><br><b>Vor dem Antrag</b><p>Verstehen, was es gibt und ob ein Pflegegrad in Frage kommt.</p></div>
+      <div class="phase"><span>Phase 2</span><br><b>Der Antrag</b><p>Pflegegrad und Leistungen beantragen – mit fertigem Schreiben.</p></div>
+      <div class="phase"><span>Phase 3</span><br><b>Nach der Bewilligung</b><p>Leistungen voll nutzen, Höherstufung, Absicherung, Hilfsmittel.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEISTUNGEN ÜBERBLICK -->
+<section id="leistungen">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Die wichtigsten Leistungen im Überblick</h2>
+      <p>Ein erster Überblick – im Assistenten weiter unten erklären wir jede Leistung im Detail und erstellen den passenden Antrag. (Beträge Stand 2026.)</p>
+    </div>
+    <div class="grid3">
+      <div class="card tile" onclick="goTopic('pflegegeld')"><div class="pill-ic">💶</div><h3>Pflegegeld</h3><div class="amt">347 – 990 €<small> / Monat</small></div><p>Wenn Angehörige zu Hause pflegen (Pflegegrad 2–5).</p><span class="more">Erklären & Antrag erstellen →</span></div>
+      <div class="card tile" onclick="goTopic('sach')"><div class="pill-ic">🩺</div><h3>Pflegesachleistungen</h3><div class="amt">796 – 2.299 €<small> / Monat</small></div><p>Für einen ambulanten Pflegedienst.</p><span class="more">Erklären & Antrag erstellen →</span></div>
+      <div class="card tile" onclick="goTopic('entlastung')"><div class="pill-ic">🤝</div><h3>Entlastungsbetrag</h3><div class="amt">131 €<small> / Monat</small></div><p>Für Betreuung & Alltagshilfe, alle Pflegegrade.</p><span class="more">Erklären & Antrag erstellen →</span></div>
+      <div class="card tile" onclick="goTopic('hilfsmittel')"><div class="pill-ic">🧤</div><h3>Pflegehilfsmittel</h3><div class="amt">bis 42 €<small> / Monat</small></div><p>Kostenlose monatliche Verbrauchsbox.</p><span class="more">Erklären & Antrag erstellen →</span></div>
+      <div class="card tile" onclick="goTopic('verhinderung')"><div class="pill-ic">🌴</div><h3>Verhinderungs- & Kurzzeitpflege</h3><div class="amt">3.539 €<small> / Jahr</small></div><p>Wenn die Pflegeperson ausfällt (ab Pflegegrad 2).</p><span class="more">Erklären & Antrag erstellen →</span></div>
+      <div class="card tile" onclick="goTopic('wohnumbau')"><div class="pill-ic">🏠</div><h3>Wohnraum-Anpassung</h3><div class="amt">bis 4.000 €<small> / Maßnahme</small></div><p>Zuschuss für barrierearmen Umbau.</p><span class="more">Erklären & Antrag erstellen →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSISTENT -->
+<section id="assistent" class="alt">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;margin:0 auto 26px">
+      <h2>Der Pflege-Assistent</h2>
+      <p>Stellen Sie Ihre Frage oder wählen Sie ein Thema. Sie bekommen eine verständliche Erklärung, eine konkrete Empfehlung – und bei Bedarf sofort das passende Antragsschreiben.</p>
+    </div>
+
+    <div class="chat-shell">
+      <div class="chat-top"><span class="dot"></span><b>Pflege-Assistent</b><span id="modeLabel">Wie kann ich helfen?</span></div>
+      <div class="progress"><i id="bar"></i></div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-input" id="inputRow">
+        <input id="textInput" type="text" placeholder="Frage eingeben, z. B. „Urlaub", „Treppenlift", „Rente"…" autocomplete="off">
+        <button class="btn" id="sendBtn">Senden</button>
+      </div>
+    </div>
+    <div class="privacy-chip">🔒 Alle Angaben bleiben in Ihrem Browser. Es wird nichts gespeichert oder verschickt.</div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section id="ablauf">
+  <div class="wrap">
+    <div class="section-head"><h2>So läuft die Antragstellung</h2><p>Vom Antrag bis zum Bescheid in vier Schritten. Die Pflegekasse muss innerhalb von 25 Arbeitstagen entscheiden – sonst gibt es 70 € pro angefangener Woche Verzug.</p></div>
+    <div class="steps">
+      <div class="step"><h3>Antrag stellen</h3><p>Ein formloses Schreiben oder Anruf genügt. Das Datum sichert Ihren Anspruch.</p></div>
+      <div class="step"><h3>Formular ausfüllen</h3><p>Die Kasse schickt ihr Formular, Sie senden es ausgefüllt zurück.</p></div>
+      <div class="step"><h3>Begutachtung</h3><p>Der Medizinische Dienst kommt nach Hause und bewertet die Selbstständigkeit.</p></div>
+      <div class="step"><h3>Bescheid</h3><p>Sie erhalten den Pflegegrad schriftlich. Widerspruch ist binnen 1 Monat möglich.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NACH DER BEWILLIGUNG -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head"><h2>Nach der Bewilligung – jetzt geht es erst richtig los</h2><p>Viele Familien verschenken Geld, weil sie ihre Ansprüche nicht voll nutzen. Diese Leistungen lohnen sich besonders – fragen Sie den Assistenten nach Details.</p></div>
+    <div class="grid3">
+      <div class="card tile" onclick="goTopic('hoeher')"><div class="pill-ic">🔁</div><h3>Höherstufung</h3><p>Verschlechtert sich der Zustand, beantragen Sie einen höheren Pflegegrad – mit mehr Leistungen.</p><span class="more">Erklären & Antrag erstellen →</span></div>
+      <div class="card tile" onclick="goTopic('rente')"><div class="pill-ic">👵</div><h3>Rente für Pflegende</h3><p>Pflegen Sie einen Angehörigen, zahlt die Pflegekasse oft Ihre Rentenbeiträge.</p><span class="more">Mehr erfahren →</span></div>
+      <div class="card tile" onclick="goTopic('beratung')"><div class="pill-ic">📋</div><h3>Beratungseinsatz</h3><p>Bei Pflegegeld ein Pflichttermin (ab 2026 halbjährlich) – von der Kasse bezahlt.</p><span class="more">Mehr erfahren →</span></div>
+      <div class="card tile" onclick="goTopic('pflegekurs')"><div class="pill-ic">🎓</div><h3>Pflegekurs</h3><p>Kostenlose Schulung für Angehörige, von der Kasse bezahlt – auch online oder zu Hause.</p><span class="more">Mehr erfahren →</span></div>
+      <div class="card tile" onclick="goTopic('steuer')"><div class="pill-ic">🧾</div><h3>Steuervorteile</h3><p>Pflege-Pauschbetrag und außergewöhnliche Belastungen senken Ihre Steuer.</p><span class="more">Mehr erfahren →</span></div>
+      <div class="card tile" onclick="goTopic('vorsorge')"><div class="pill-ic">📄</div><h3>Vorsorge regeln</h3><p>Vorsorgevollmacht und Patientenverfügung – wichtig, solange es noch geht.</p><span class="more">Mehr erfahren →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="wrap">
+    <div class="section-head"><h2>An wen wende ich mich?</h2><p>Es gibt keine zentrale E-Mail für alle – zuständig ist immer Ihre eigene Pflegekasse. Diese Stellen helfen Ihnen weiter:</p></div>
+    <div class="contact-grid">
+      <div class="card tile" onclick="openKassen()">
+        <h3>📮 Ihre Pflegekasse (wichtigste Adresse)</h3>
+        <p>Die Pflegekasse sitzt bei Ihrer Krankenkasse. Dorthin schicken Sie auch den Antrag. Klicken Sie hier, um Telefon, E-Mail und Postadresse Ihrer Kasse zu finden.</p>
+        <span class="more">🔎 Meine Kasse finden →</span>
+      </div>
+      <div class="card">
+        <h3>☎️ Bürgertelefon zur Pflegeversicherung</h3>
+        <p class="big-num">030 340 60 66 – 02</p>
+        <p>Kostenlose Auskunft des Bundesgesundheitsministeriums. Mo–Mi 8–16 Uhr, Do 8–18 Uhr, Fr 8–12 Uhr.</p>
+      </div>
+    </div>
+    <p style="margin-top:16px;color:var(--muted)">💡 <b>Tipp:</b> Eine kostenlose, unabhängige Beratung bietet auch der <b>Pflegestützpunkt</b> in Ihrer Nähe (Anspruch nach § 7a SGB XI) – einfach „Pflegestützpunkt + Ihre Stadt" suchen oder bei Ihrer Pflegekasse erfragen.</p>
+  </div>
+</section>
+
+<!-- MONETIZATION -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head"><h2>Das kann Ihren Alltag erleichtern</h2><p>Geprüfte Angebote – manche werden vollständig von der Pflegekasse übernommen.</p></div>
+    <div class="promo">
+      <div class="card"><div class="pill-ic">📦</div><div><span class="ad-tag">Beispiel-Platz</span><h3 style="margin-top:8px">Kostenlose Pflegehilfsmittel-Box</h3><p>Handschuhe, Desinfektion, Bettschutz & mehr – bis 42 €/Monat, von der Pflegekasse bezahlt. <a href="#" onclick="goTopic('hilfsmittel');return false;">Box anfordern →</a></p></div></div>
+      <div class="card"><div class="pill-ic">🔔</div><div><span class="ad-tag">Beispiel-Platz</span><h3 style="margin-top:8px">Hausnotruf mit Zuschuss</h3><p>Hilfe auf Knopfdruck, von der Pflegekasse bezuschusst. <a href="#" onclick="goTopic('hausnotruf');return false;">Anbieter vergleichen →</a></p></div></div>
+    </div>
+    <p style="margin-top:16px;color:var(--muted);font-size:.9rem">Transparenz: An Ihrer Seite ist für Sie kostenlos. Schließen Sie über eine Empfehlung ein Angebot ab, erhalten wir eine kleine Vergütung vom Anbieter – für Sie ohne Mehrkosten. So bleibt die Beratung gratis.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap" style="max-width:800px">
+    <div class="section-head"><h2>Häufige Fragen</h2></div>
+    <details><summary>Ist die Seite wirklich kostenlos?</summary><p>Ja. Der Pflege-Check, alle Erklärungen und die fertigen Antragsschreiben sind für Sie vollständig kostenlos und ohne Anmeldung nutzbar. Es gibt keine versteckten Kosten und kein Abo. Finanziert wird das Angebot über Empfehlungs- bzw. Affiliate-Links: Wenn Sie über eine unserer Empfehlungen (z. B. eine Pflegehilfsmittel-Box oder einen Hausnotruf) ein Angebot abschließen, erhalten wir eine kleine Vergütung vom Anbieter – für Sie entstehen dadurch keine Mehrkosten.</p></details>
+    <details><summary>Was passiert mit meinen Angaben? Sind meine Daten sicher?</summary><p>Ihre Eingaben im Pflege-Check und im Antrags-Assistenten werden ausschließlich in Ihrem Browser (auf Ihrem eigenen Gerät) verarbeitet. Wir übertragen, speichern und sammeln <b>keine</b> dieser Daten – auch keine Gesundheits-, Namens- oder Adressangaben. Wenn Sie die Seite schließen oder neu laden, sind alle Eingaben weg. Eine Verarbeitung besonderer Datenkategorien (Art. 9 DSGVO) durch uns findet damit nicht statt. Mehr dazu in unserer Datenschutzerklärung.</p></details>
+    <details><summary>Ersetzt der Check eine offizielle Einstufung?</summary><p>Nein. Unser Pflege-Check gibt Ihnen eine <b>grobe Orientierung</b>, welcher Pflegegrad und welche Leistungen in Frage kommen könnten. Die verbindliche Einstufung trifft immer der Medizinische Dienst (bei gesetzlich Versicherten) bzw. Medicproof (bei privat Versicherten) nach einem persönlichen Begutachtungstermin. Unser Ergebnis kann und soll dieses Gutachten nicht vorwegnehmen.</p></details>
+    <details><summary>Bekomme ich hier eine Rechtsberatung?</summary><p>Nein. Wir bieten allgemeine, verständliche Informationen und Hilfe beim Ausfüllen von Anträgen (sogenannte Antragshilfe), jedoch keine Rechtsberatung im Einzelfall. Geht es um rechtliche Fragen – etwa einen begründeten Widerspruch gegen einen Bescheid – wenden Sie sich bitte an eine anerkannte Pflegeberatung, die Verbraucherzentrale, einen Sozialverband (z. B. VdK oder SoVD) oder einen Fachanwalt für Sozialrecht.</p></details>
+    <details><summary>Wie beantrage ich einen Pflegegrad – Schritt für Schritt?</summary><p>1. Stellen Sie einen formlosen Antrag bei Ihrer Pflegekasse (ein kurzes Schreiben oder Anruf genügt – das Datum sichert Ihren Anspruch). Unser Assistent erstellt Ihnen dieses Schreiben fertig. 2. Die Kasse schickt Ihnen ihr Antragsformular, das Sie ausgefüllt zurücksenden. 3. Der Medizinische Dienst meldet sich für einen Begutachtungstermin bei Ihnen zu Hause. 4. Sie erhalten den Bescheid mit dem Pflegegrad. Tipp: Beantragen Sie früh – die Leistungen gelten ab dem Eingangsdatum des Antrags.</p></details>
+    <details><summary>Wie lange dauert es bis zur Entscheidung?</summary><p>Die Pflegekasse muss innerhalb von <b>25 Arbeitstagen</b> nach Antragseingang entscheiden. Hält sie diese Frist nicht ein, steht Ihnen eine Entschädigung von <b>70 € pro angefangener Woche</b> Verzögerung zu (außer die Verzögerung liegt nicht im Verantwortungsbereich der Kasse). In dringenden Fällen, z. B. bei Pflege im Krankenhaus oder Hospiz, gelten verkürzte Fristen.</p></details>
+    <details><summary>Was passiert bei der Begutachtung durch den Medizinischen Dienst?</summary><p>Ein Gutachter kommt zu Ihnen nach Hause (meist 45–60 Minuten) und bewertet, wie selbstständig die Person in sechs Lebensbereichen ist: Mobilität, geistige und kommunikative Fähigkeiten, Verhalten, Selbstversorgung, Umgang mit Krankheit/Therapie sowie Gestaltung des Alltags. Tipp: Führen Sie vorab 1–2 Wochen ein <b>Pflegetagebuch</b>, halten Sie Arztberichte und die Medikamentenliste bereit und lassen Sie eine vertraute Person beim Termin dabei sein. Schildern Sie den Bedarf ehrlich – auch an „schlechten" Tagen.</p></details>
+    <details><summary>Ab welchem Pflegegrad bekomme ich Geld?</summary><p>Pflegegeld und Pflegesachleistungen gibt es erst <b>ab Pflegegrad 2</b>. Bei Pflegegrad 1 erhalten Sie kein Pflegegeld, aber dennoch wichtige Leistungen: den Entlastungsbetrag (131 €/Monat), die kostenlose Pflegehilfsmittel-Box (bis 42 €/Monat), einen Zuschuss zum Hausnotruf sowie Zuschüsse für Wohnraumanpassung. Unser Assistent weist Sie automatisch darauf hin, wenn eine Leistung erst ab einem höheren Pflegegrad möglich ist.</p></details>
+    <details><summary>Pflegegeld oder Pflegesachleistung – was ist der Unterschied?</summary><p>Pflegegeld wird ausgezahlt, wenn Angehörige oder Bekannte die Pflege zu Hause übernehmen; es wird an die pflegebedürftige Person überwiesen und kann frei verwendet werden. Pflegesachleistungen sind höher und werden direkt mit einem ambulanten Pflegedienst abgerechnet, der die Versorgung übernimmt. Beides lässt sich als „Kombinationsleistung" anteilig mischen, wenn Angehörige <i>und</i> ein Dienst pflegen.</p></details>
+    <details><summary>Ist die Pflegehilfsmittel-Box wirklich kostenlos?</summary><p>Ja. Zum Verbrauch bestimmte Pflegehilfsmittel wie Einmalhandschuhe, Desinfektion, Bettschutzeinlagen und Mundschutz werden bis zu <b>42 € pro Monat</b> von der Pflegekasse bezahlt – bei allen Pflegegraden (1–5), sofern zu Hause gepflegt wird. Viele Anbieter liefern eine fertige Box nach Hause und rechnen direkt mit der Kasse ab; für Sie entstehen keine Kosten. Sie müssen die Box nur einmal beantragen.</p></details>
+    <details><summary>Bekomme ich als pflegende:r Angehörige:r etwas für meine Rente?</summary><p>Möglicherweise ja. Wenn Sie nicht erwerbsmäßig einen Angehörigen mit mindestens Pflegegrad 2 pflegen – mindestens 10 Stunden pro Woche an mindestens zwei Tagen – und selbst höchstens 30 Stunden pro Woche erwerbstätig sind, zahlt die Pflegekasse Rentenbeiträge für Sie. Den dafür nötigen „Fragebogen zur sozialen Absicherung der Pflegeperson" erhalten Sie bei der Pflegekasse.</p></details>
+    <details><summary>Was kann ich tun, wenn der Pflegegrad abgelehnt oder zu niedrig ist?</summary><p>Sie können innerhalb von <b>einem Monat</b> nach Erhalt des Bescheids schriftlich Widerspruch einlegen. Lassen Sie sich zunächst das vollständige Gutachten zusenden und prüfen Sie es. Unser Assistent erstellt Ihnen ein fristwahrendes Widerspruchsschreiben. Für die inhaltliche Begründung helfen Pflegeberatung, Verbraucherzentrale oder ein Sozialverband.</p></details>
+    <details><summary>Gilt das alles auch für privat Versicherte?</summary><p>Im Kern ja. Privat Krankenversicherte haben eine private Pflegepflichtversicherung mit weitgehend gleichen Leistungsbeträgen wie die gesetzliche Pflegeversicherung. Den Antrag stellen Sie bei Ihrem privaten Versicherer; die Begutachtung übernimmt dort „Medicproof" statt des Medizinischen Dienstes.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top" style="color:#fff"><span class="mark">♥</span> An Ihrer Seite</a>
+        <p style="margin-top:10px;font-size:1.05rem;color:#9fd9c7;font-style:italic">Pflege gemeinsam meistern.</p>
+        <p style="margin-top:6px;max-width:42ch">Verständliche Hilfe rund um Pflegeleistungen in Deutschland. Damit Familien bekommen, was ihnen zusteht.</p>
+      </div>
+      <div><h4>Inhalt</h4><p><a href="#leistungen">Leistungen</a><br><a href="#assistent">Assistent</a><br><a href="#ablauf">Ablauf</a><br><a href="#kontakt">Kontakt</a></p></div>
+      <div><h4>Rechtliches</h4><p><a href="impressum.html" onclick="openImpressum();return false;">Impressum</a><br><a href="datenschutz.html" onclick="openDatenschutz();return false;">Datenschutz</a><br><a href="impressum.html" onclick="openImpressum();return false;">Haftungsausschluss</a></p></div>
+    </div>
+    <div class="disclaimer"><strong>Wichtiger Hinweis:</strong> An Ihrer Seite bietet allgemeine, unverbindliche Informationen und Orientierungshilfen. Die Inhalte ersetzen keine individuelle ärztliche, rechtliche oder sozialrechtliche Beratung und keine offizielle Pflegebegutachtung. Alle Beträge nach dem Stand 2026 ohne Gewähr. © <span id="yr"></span> An Ihrer Seite. Alle Angaben ohne Gewähr. <a href="impressum.html" onclick="openImpressum();return false;" style="color:#9fd9c7">Impressum</a></div>
+  </div>
+</footer>
+
+<!-- IMPRESSUM-EINBLENDUNG -->
+<div id="impressumModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(20,40,35,.55);padding:24px;overflow-y:auto">
+  <div style="max-width:760px;margin:30px auto;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.3);padding:30px 32px;position:relative">
+    <button onclick="closeImpressum()" style="position:absolute;top:16px;right:18px;border:0;background:var(--green-soft);color:var(--green-dark);width:38px;height:38px;border-radius:50%;font-size:1.3rem;cursor:pointer">×</button>
+    <h2 style="margin-top:0">Impressum</h2>
+    <p style="color:var(--muted);margin-top:-.4em">Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>
+    <h3>Diensteanbieter</h3>
+    <p>Maximilian Pfeffer<br>Friedrich-Ebert-Straße 13a<br>36266 Heringen<br>Deutschland</p>
+    <h3>Kontakt</h3>
+    <p>Telefon: +49 176 42091021<br>E-Mail: pfeffermaximilian@web.de</p>
+    <h3>Redaktionell verantwortlich</h3>
+    <p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:<br>Maximilian Pfeffer, Friedrich-Ebert-Straße 13a, 36266 Heringen</p>
+    <h3>Verbraucherstreitbeilegung</h3>
+    <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    <h3>Haftung für Inhalte</h3>
+    <p>Die Inhalte dieser Seite dienen der allgemeinen Orientierung und ersetzen keine individuelle ärztliche, rechtliche oder sozialrechtliche Beratung sowie keine offizielle Pflegebegutachtung. Alle Beträge nach dem Stand 2026 ohne Gewähr.</p>
+    <h3>Hinweis zu Affiliate-Links</h3>
+    <p>Diese Website enthält ggf. Empfehlungslinks. Schließen Sie darüber einen Vertrag ab, erhalten wir unter Umständen eine Vergütung – für Sie ohne Mehrkosten.</p>
+    <p style="margin-top:18px;color:var(--muted);font-size:.9rem">Hinweis: Eine vollständige Datenschutzerklärung wird vor dem Live-Gang ergänzt.</p>
+    <button class="btn" onclick="closeImpressum()" style="margin-top:6px">Schließen</button>
+  </div>
+</div>
+
+<!-- KASSEN-FINDER -->
+<div id="kassenModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(20,40,35,.55);padding:24px;overflow-y:auto">
+  <div style="max-width:720px;margin:30px auto;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.3);padding:26px 28px;position:relative">
+    <button onclick="closeKassen()" style="position:absolute;top:16px;right:18px;border:0;background:var(--green-soft);color:var(--green-dark);width:38px;height:38px;border-radius:50%;font-size:1.3rem;cursor:pointer">×</button>
+    <h2 style="margin-top:0">🔎 Meine Pflegekasse finden</h2>
+    <p style="color:var(--muted);margin-top:-.3em">Die Pflegekasse sitzt bei Ihrer Krankenkasse. Suchen Sie hier nach dem Namen Ihrer Kasse.</p>
+    <input id="kassenSearch" type="text" placeholder="Name eingeben, z. B. „TK", „Barmer", „DAK"…" oninput="renderKassen(this.value)" style="width:100%;font-size:1.05rem;padding:.75em 1em;border:1.5px solid var(--line);border-radius:12px;margin-bottom:14px">
+    <div id="kassenList"></div>
+    <div class="note" style="margin-top:16px">Auswahl der größten Kassen. Ihre Kasse ist nicht dabei? Die genauen Kontaktdaten stehen immer auf Ihrer <b>Versichertenkarte</b> und der Website Ihrer Kasse. Alle Angaben ohne Gewähr – im Zweifel auf der Kassen-Website prüfen.</div>
+    <button class="btn" onclick="closeKassen()" style="margin-top:14px">Schließen</button>
+  </div>
+</div>
+
+<!-- DATENSCHUTZ-EINBLENDUNG -->
+<div id="datenschutzModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(20,40,35,.55);padding:24px;overflow-y:auto">
+  <div style="max-width:760px;margin:30px auto;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.3);padding:30px 32px;position:relative">
+    <button onclick="closeDatenschutz()" style="position:absolute;top:16px;right:18px;border:0;background:var(--green-soft);color:var(--green-dark);width:38px;height:38px;border-radius:50%;font-size:1.3rem;cursor:pointer">×</button>
+    <h2 style="margin-top:0">Datenschutzerklärung</h2>
+    <p style="color:var(--muted);margin-top:-.4em">Informationen zur Verarbeitung Ihrer Daten gemäß DSGVO</p>
+    <h3>1. Verantwortlicher</h3>
+    <p>Maximilian Pfeffer, Friedrich-Ebert-Straße 13a, 36266 Heringen · E-Mail: pfeffermaximilian@web.de. Weitere Angaben im Impressum.</p>
+
+    <h3>2. Keine Speicherung Ihrer Eingaben</h3>
+    <p>Pflege-Check und Antrags-Assistent laufen vollständig in Ihrem Browser. Ihre Eingaben – auch Gesundheits-, Namens- oder Adressangaben – werden nicht an uns übertragen, nicht gespeichert und nicht weitergegeben. Sie verbleiben auf Ihrem Gerät und sind nach dem Neuladen gelöscht. Eine Verarbeitung besonderer Daten (Art. 9 DSGVO) durch uns findet nicht statt.</p>
+
+    <h3>3. Hosting &amp; Server-Logfiles</h3>
+    <p>Gehostet bei Netlify (Netlify, Inc., USA; Übermittlung auf Basis der EU-Standardvertragsklauseln). Beim Aufruf verarbeitet der Anbieter technisch notwendige Zugriffsdaten (gekürzte IP-Adresse, Zeitpunkt, aufgerufene Seite, Browser) zur sicheren Bereitstellung der Seite. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+    <h3>4. Cookies &amp; Tracking</h3>
+    <p>Diese Website setzt keine Tracking-Cookies und nutzt keine Analyse- oder Marketing-Dienste. Es findet keine Profilbildung und kein websiteübergreifendes Tracking statt.</p>
+
+    <h3>5. Kontaktaufnahme</h3>
+    <p>Bei Kontakt per E-Mail verarbeiten wir Ihre Angaben nur zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b/f DSGVO) und löschen sie, sobald sie nicht mehr erforderlich sind.</p>
+
+    <h3>6. Partner- &amp; Affiliate-Links</h3>
+    <p>Beim Klick auf einen Empfehlungs- bzw. Affiliate-Link verlassen Sie unsere Seite. Für die Datenverarbeitung beim jeweiligen Anbieter ist allein dieser verantwortlich.</p>
+
+    <h3>7. Ihre Rechte</h3>
+    <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch sowie auf Beschwerde bei einer Datenschutz-Aufsichtsbehörde (Art. 15–21, 77 DSGVO).</p>
+    <button class="btn" onclick="closeDatenschutz()" style="margin-top:6px">Schließen</button>
+  </div>
+</div>
+
+<script>
+function openImpressum(){document.getElementById('impressumModal').style.display='block';document.body.style.overflow='hidden';}
+function closeImpressum(){document.getElementById('impressumModal').style.display='none';document.body.style.overflow='';}
+
+/* ==== Kassen-Finder (öffentliche Service-Kontaktdaten, Auswahl der größten Kassen, ohne Gewähr) ==== */
+const KASSEN=[
+ {name:'Techniker Krankenkasse (TK)',tel:'0800 285 85 85 (gebührenfrei)',mail:'Kontakt über tk.de',post:'Techniker Krankenkasse, 22291 Hamburg',web:'tk.de'},
+ {name:'BARMER',tel:'0800 333 10 10 (gebührenfrei)',mail:'Kontakt über barmer.de',post:'BARMER, 42266 Wuppertal',web:'barmer.de'},
+ {name:'DAK-Gesundheit',tel:'040 325 325 555',mail:'service@dak.de',post:'DAK-Gesundheit, Nagelsweg 27–31, 20097 Hamburg',web:'dak.de'},
+ {name:'KKH Kaufmännische Krankenkasse',tel:'0800 5548 6405 54 (gebührenfrei)',mail:'service@kkh.de',web:'kkh.de'},
+ {name:'IKK classic',tel:'0800 455 1111 (gebührenfrei)',mail:'info@ikk-classic.de',web:'ikk-classic.de'},
+ {name:'KNAPPSCHAFT',tel:'08000 200 501 (gebührenfrei)',mail:'Kontakt über knappschaft.de',web:'knappschaft.de'},
+ {name:'SBK – Siemens-Betriebskrankenkasse',tel:'0800 072 572 572 50 (gebührenfrei)',mail:'info@sbk.org',web:'sbk.org'},
+ {name:'hkk Krankenkasse',tel:'0800 2 555444 · Pflege: 0421 3655-1799',mail:'info@hkk.de · Pflege: Pflegeversicherung@hkk.de',post:'hkk Krankenkasse, 28185 Bremen',web:'hkk.de'},
+ {name:'BIG direkt gesund',tel:'0800 54 56 54 56 (gebührenfrei)',mail:'Kontakt über big-direkt.de',post:'BIG direkt gesund, Hörder-Bach-Allee 1–3, 44263 Dortmund',web:'big-direkt.de'},
+ {name:'VIACTIV Krankenkasse',tel:'0800 222 12 11 (gebührenfrei)',mail:'service@viactiv.de',web:'viactiv.de'},
+ {name:'BKK·VBU (meine Krankenkasse)',tel:'0800 165 66 16 (gebührenfrei)',mail:'Kontakt über meine-krankenkasse.de',web:'meine-krankenkasse.de'},
+ {name:'mhplus Krankenkasse',tel:'07141 9790-0',mail:'Kontakt über mhplus-krankenkasse.de',web:'mhplus-krankenkasse.de'},
+ {name:'pronova BKK',tel:'0621 53391-1000',mail:'Kontakt über pronovabkk.de',web:'pronovabkk.de'},
+ {name:'AOK Baden-Württemberg',tel:'0711 76161923',web:'aok.de/pk/bw'},
+ {name:'AOK Bayern',tel:'089 22844050',web:'aok.de/pk/bayern'},
+ {name:'AOK Nordost (Berlin, Brandenburg, MV)',tel:'0800 2650800 (gebührenfrei)',web:'aok.de/pk/nordost'},
+ {name:'AOK Niedersachsen',tel:'0800 0265637 (gebührenfrei)',web:'aok.de/pk/niedersachsen'},
+ {name:'AOK Rheinland/Hamburg',tel:'0800 0 326 326 (gebührenfrei)',web:'aok.de/pk/rh'},
+ {name:'AOK Rheinland-Pfalz/Saarland',tel:'0800 4772000 (gebührenfrei)',web:'aok.de/pk/rps'},
+ {name:'AOK Hessen',tel:'069 66816-334000',web:'aok.de/pk/hessen'},
+ {name:'AOK PLUS (Sachsen, Thüringen)',tel:'0800 1059000 (gebührenfrei)',web:'aok.de/pk/plus'},
+ {name:'AOK – weitere Regionen',note:'Weitere AOK-Regionen: AOK NordWest (Westfalen-Lippe & Schleswig-Holstein), AOK Bremen/Bremerhaven, AOK Sachsen-Anhalt. Kontaktdaten auf aok.de.',web:'aok.de'},
+ {name:'Weitere Kassen (BKK, IKK u. a.)',note:'Ihre Kasse ist nicht dabei? In Deutschland gibt es rund 95 gesetzliche Kassen. Die genauen, tagesaktuellen Kontaktdaten Ihrer Kasse finden Sie immer auf Ihrer Versichertenkarte und auf der Website Ihrer Kasse.'}
+];
+function renderKassen(filter){
+  const q=(filter||'').toLowerCase().trim();
+  const list=KASSEN.filter(k=>k.name.toLowerCase().includes(q));
+  const box=document.getElementById('kassenList');
+  if(!list.length){box.innerHTML='<p style="color:var(--muted)">Keine passende Kasse gefunden. Die Kontaktdaten stehen auf Ihrer Versichertenkarte und der Website Ihrer Kasse.</p>';return;}
+  box.innerHTML=list.map(function(k){
+    var rows='';
+    if(k.note){rows+='<p style="color:var(--muted);font-size:.95rem">'+k.note+'</p>';}
+    else{
+      if(k.tel)rows+='<div class="kv"><b>☎️ Telefon:</b><span>'+k.tel+'</span></div>';
+      if(k.mail)rows+='<div class="kv"><b>✉️ E-Mail:</b><span>'+k.mail+'</span></div>';
+      if(k.post)rows+='<div class="kv"><b>📮 Post:</b><span>'+k.post+'</span></div>';
+    }
+    if(k.web)rows+='<div class="kv"><b>🌐 Web:</b><span><a href="https://www.'+k.web+'" target="_blank" rel="noopener">'+k.web+'</a></span></div>';
+    return '<div class="kasse"><h3>'+k.name+'</h3>'+rows+'</div>';
+  }).join('');
+}
+function openKassen(){document.getElementById('kassenModal').style.display='block';document.body.style.overflow='hidden';renderKassen('');var s=document.getElementById('kassenSearch');s.value='';setTimeout(function(){s.focus();},100);}
+function closeKassen(){document.getElementById('kassenModal').style.display='none';document.body.style.overflow='';}
+function openDatenschutz(){document.getElementById('datenschutzModal').style.display='block';document.body.style.overflow='hidden';}
+function closeDatenschutz(){document.getElementById('datenschutzModal').style.display='none';document.body.style.overflow='';}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeImpressum();closeKassen();closeDatenschutz();}});
+document.getElementById('impressumModal').addEventListener('click',e=>{if(e.target.id==='impressumModal')closeImpressum();});
+document.getElementById('kassenModal').addEventListener('click',e=>{if(e.target.id==='kassenModal')closeKassen();});
+document.getElementById('datenschutzModal').addEventListener('click',e=>{if(e.target.id==='datenschutzModal')closeDatenschutz();});
+document.getElementById('yr').textContent=new Date().getFullYear();
+const PFLEGEGELD={2:347,3:599,4:800,5:990};
+const SACH={2:796,3:1497,4:1859,5:2299};
+function euro(n){return n.toLocaleString('de-DE')+' €';}
+
+/* ====== LEISTUNGS-LEXIKON ====== */
+/* phase: 1 vor | 2 antrag | 3 nach ; antrag: key für Antragsschreiben oder null */
+const LEX=[
+ {id:'pflegegrad',ic:'📝',cat:'Antrag',title:'Pflegegrad beantragen',
+  keys:['pflegegrad','antrag','einstufung','beantragen','erstantrag','begutachtung','md','mdk'],
+  wer:'Alle Pflegeversicherten mit dauerhaftem Hilfebedarf – jedes Alter.',betrag:'Voraussetzung für fast alle Leistungen',
+  detail:'Der Pflegegrad (1–5) ist der Schlüssel: Erst mit ihm bekommen Sie Geld- und Sachleistungen. Ein formloser Antrag bei der Pflegekasse startet das Verfahren. Danach kommt der Medizinische Dienst zur Begutachtung nach Hause und bewertet die Selbstständigkeit in sechs Bereichen.',
+  rec:'Stellen Sie den Antrag früh – er gilt ab dem Eingangsdatum. Im Zweifel lieber beantragen: Entschieden wird erst nach der Begutachtung.',antrag:'pflegegrad'},
+
+ {id:'pflegegeld',ic:'💶',cat:'Geldleistung',title:'Pflegegeld',
+  keys:['pflegegeld','geld','angehörige','selbst pflegen','bar'],
+  wer:'Pflegegrad 2–5, Pflege durch Angehörige/Bekannte zu Hause.',betrag:'347 / 599 / 800 / 990 € pro Monat (Grad 2–5)',
+  detail:'Pflegegeld erhalten Sie, wenn die Pflege zu Hause durch Angehörige oder Bekannte sichergestellt wird. Das Geld wird an die pflegebedürftige Person ausgezahlt, die es frei verwenden – z. B. an die Pflegeperson weitergeben – kann.',
+  rec:'Wenn überwiegend Angehörige pflegen, ist Pflegegeld die richtige Wahl. Kombinierbar mit einem Pflegedienst (Kombinationsleistung).',antrag:'leistung'},
+
+ {id:'sach',ic:'🩺',cat:'Sachleistung',title:'Pflegesachleistungen',
+  keys:['sachleistung','pflegedienst','ambulant','dienst','sach'],
+  wer:'Pflegegrad 2–5, Versorgung durch ambulanten Pflegedienst.',betrag:'796 / 1.497 / 1.859 / 2.299 € pro Monat (Grad 2–5)',
+  detail:'Übernimmt ein ambulanter Pflegedienst die Versorgung, rechnet dieser direkt mit der Pflegekasse ab – bis zur Höhe Ihres Budgets. Der Betrag ist höher als das Pflegegeld, weil Fachkräfte teurer sind.',
+  rec:'Sinnvoll, wenn ein Pflegedienst nötig ist. Nicht voll ausgeschöpfte Sachleistung lässt sich teils in den Entlastungsbetrag oder als Pflegegeld kombinieren.',antrag:'leistung'},
+
+ {id:'kombi',ic:'🔀',cat:'Geldleistung',title:'Kombinationsleistung',
+  keys:['kombination','kombi','beides','dienst und angehörige'],
+  wer:'Pflegegrad 2–5, wenn Angehörige UND Pflegedienst pflegen.',betrag:'anteilig aus Pflegegeld + Sachleistung',
+  detail:'Sie nutzen einen Teil der Sachleistung für den Pflegedienst und bekommen für den Rest anteilig Pflegegeld. Nutzen Sie z. B. 60 % der Sachleistung, erhalten Sie 40 % des Pflegegeldes dazu.',
+  rec:'Ideal, wenn Angehörige pflegen, aber zusätzlich ein Dienst unterstützt. Die Kasse rechnet die Anteile automatisch aus.',antrag:'leistung'},
+
+ {id:'entlastung',ic:'🤝',cat:'Zu Hause',title:'Entlastungsbetrag (131 €)',
+  keys:['entlastung','entlastungsbetrag','betreuung','alltag','131','alltagshilfe','haushaltshilfe'],
+  wer:'Alle Pflegegrade 1–5 bei Pflege zu Hause.',betrag:'131 € pro Monat',
+  detail:'Dieser Betrag ist für Betreuungs- und Entlastungsangebote: anerkannte Alltagshelfer, Betreuungsgruppen, Haushaltshilfen oder Zuschuss zur Tagespflege. Nicht genutzte Beträge können bis Mitte des Folgejahres angespart werden.',
+  rec:'Wird sehr oft verschenkt! Suchen Sie einen anerkannten Anbieter in Ihrer Region, lassen Sie sich Rechnungen geben und reichen Sie sie bei der Kasse ein – oder der Anbieter rechnet direkt ab.',antrag:'leistung'},
+
+ {id:'hilfsmittel',ic:'🧤',cat:'Zu Hause',title:'Pflegehilfsmittel-Box (42 €)',
+  keys:['hilfsmittel','box','handschuhe','desinfektion','verbrauch','42','bettschutz'],
+  wer:'Alle Pflegegrade 1–5, die zu Hause gepflegt werden.',betrag:'bis 42 € pro Monat (zum Verbrauch)',
+  detail:'Verbrauchsmaterial wie Einmalhandschuhe, Desinfektion, Bettschutzeinlagen und Mundschutz wird bis 42 €/Monat von der Pflegekasse bezahlt. Viele Anbieter liefern eine fertige Box nach Hause und rechnen direkt mit der Kasse ab – für Sie kostenlos.',
+  rec:'Schnell mitnehmen: einmalig beantragen, dann kommt die Box monatlich automatisch. Kostet Sie nichts.',antrag:'hilfsmittel'},
+
+ {id:'verhinderung',ic:'🌴',cat:'Auszeit',title:'Verhinderungspflege',
+  keys:['verhinderung','urlaub','krank','vertretung','auszeit','ersatzpflege'],
+  wer:'Pflegegrad 2–5, Pflege zu Hause.',betrag:'aus 3.539 € Jahresbudget (gemeinsam mit Kurzzeitpflege)',
+  detail:'Ist die pflegende Person krank oder im Urlaub, zahlt die Kasse eine Ersatzpflege – durch einen Dienst oder andere Personen. Seit 2025 gibt es dafür einen gemeinsamen Jahresbetrag mit der Kurzzeitpflege von 3.539 €.',
+  rec:'Planen Sie Ihre eigene Erholung fest ein – Verhinderungspflege ist genau dafür da und wird oft nicht genutzt. Auch stundenweise möglich.',antrag:'leistung'},
+
+ {id:'kurzzeit',ic:'🏨',cat:'Auszeit',title:'Kurzzeitpflege',
+  keys:['kurzzeit','heim vorübergehend','nach krankenhaus','reha','stationär kurz'],
+  wer:'Pflegegrad 2–5.',betrag:'aus 3.539 € Jahresbudget (gemeinsam mit Verhinderungspflege)',
+  detail:'Vollstationäre Pflege auf Zeit – z. B. nach einem Krankenhausaufenthalt oder zur Überbrückung. Teilt sich das Jahresbudget mit der Verhinderungspflege.',
+  rec:'Besonders wichtig nach einer Klinikentlassung, wenn zu Hause noch nicht alles bereit ist. Frühzeitig im Pflegeheim anfragen, Plätze sind knapp.',antrag:'leistung'},
+
+ {id:'tagespflege',ic:'🚐',cat:'Zu Hause',title:'Tages- & Nachtpflege',
+  keys:['tagespflege','tagesstätte','nachtpflege','teilstationär','betreuung tagsüber'],
+  wer:'Pflegegrad 2–5.',betrag:'zusätzliches Budget in Höhe der Pflegesachleistung',
+  detail:'Die Person wird tagsüber (oder nachts) in einer Einrichtung betreut und gepflegt, inkl. Fahrdienst. Dieses Budget gibt es zusätzlich zu Pflegegeld/Sachleistung – es wird nicht angerechnet.',
+  rec:'Entlastet pflegende Angehörige enorm, z. B. neben dem Beruf. Kombination mit Pflegegeld zu Hause ist voll möglich.',antrag:'leistung'},
+
+ {id:'wohnumbau',ic:'🏠',cat:'Zu Hause',title:'Wohnraum-Anpassung',
+  keys:['umbau','wohnung','barrierefrei','bad','treppenlift','dusche','türen','wohnumfeld'],
+  wer:'Alle Pflegegrade 1–5.',betrag:'bis 4.000 € je Maßnahme (mehrere Personen bis 16.000 €)',
+  detail:'Zuschuss für Umbauten, die die Pflege zu Hause ermöglichen oder erleichtern: bodengleiche Dusche, Türverbreiterung, Rampen, Treppenlift, Haltegriffe.',
+  rec:'Vor Beginn der Maßnahme beantragen und Kostenvoranschlag beilegen. Bei mehreren Pflegebedürftigen im Haushalt erhöht sich der Zuschuss.',antrag:'wohnumbau'},
+
+ {id:'hausnotruf',ic:'🔔',cat:'Zu Hause',title:'Hausnotruf',
+  keys:['hausnotruf','notruf','knopf','alleine','sturz','sicherheit'],
+  wer:'Alle Pflegegrade, wenn die Person zeitweise allein ist.',betrag:'monatlicher Zuschuss der Pflegekasse',
+  detail:'Ein Sender am Handgelenk oder als Kette ruft auf Knopfdruck Hilfe. Der Hausnotruf gilt als Pflegehilfsmittel – die Pflegekasse beteiligt sich an den monatlichen Kosten.',
+  rec:'Sinnvoll für allein lebende Menschen. Antrag stellen, bevor Sie einen Vertrag abschließen, damit der Zuschuss läuft.',antrag:'hausnotruf'},
+
+ {id:'dipa',ic:'📱',cat:'Zu Hause',title:'Digitale Pflegeanwendungen',
+  keys:['digital','app','dipa','software','online anwendung'],
+  wer:'Pflegegrad 1–5 mit ärztlicher/Pflege-Empfehlung.',betrag:'bis 53 € pro Monat',
+  detail:'Geprüfte Apps, die bei der Pflege unterstützen (z. B. Gedächtnistraining, Sturzprävention), werden von der Kasse bezahlt – plus ergänzende Unterstützungsleistungen.',
+  rec:'Lohnt sich, wenn eine passende DiPA aus dem offiziellen Verzeichnis vorhanden ist. Fragen Sie Ihre Kasse nach dem aktuellen Angebot.',antrag:'leistung'},
+
+ {id:'beratung',ic:'📋',cat:'Nach Bewilligung',title:'Beratungseinsatz (§ 37.3)',
+  keys:['beratungseinsatz','beratungsbesuch','pflichtberatung','37','nachweis'],
+  wer:'Pflegegrad 2–5 mit Pflegegeldbezug.',betrag:'kostenlos – von der Pflegekasse bezahlt',
+  detail:'Wer Pflegegeld bezieht, muss regelmäßig einen Beratungsbesuch durch einen Pflegedienst nachweisen. Ab 2026 ist das für Pflegegrad 2–5 einheitlich halbjährlich Pflicht (Pflegegrad 4–5 freiwillig auch häufiger).',
+  rec:'Pflichttermin nicht versäumen, sonst kann das Pflegegeld gekürzt werden. Der Besuch ist zugleich eine gute, kostenlose Beratung.',antrag:null},
+
+ {id:'pflegekurs',ic:'🎓',cat:'Nach Bewilligung',title:'Pflegekurs für Angehörige (§ 45)',
+  keys:['pflegekurs','schulung','kurs','lernen','angehörige schulen'],
+  wer:'Pflegende Angehörige – unabhängig vom Pflegegrad.',betrag:'kostenlos – von der Pflegekasse bezahlt',
+  detail:'Kostenlose Schulungen vermitteln praktisches Pflege-Wissen (richtig lagern, heben, Umgang mit Demenz). Möglich als Gruppenkurs, online oder als Einzelschulung bei Ihnen zu Hause.',
+  rec:'Sehr empfehlenswert direkt zu Beginn – schützt Ihre eigene Gesundheit und macht die Pflege sicherer. Bei der Pflegekasse erfragen.',antrag:null},
+
+ {id:'hoeher',ic:'🔁',cat:'Nach Bewilligung',title:'Höherstufung',
+  keys:['höherstufung','höher','verschlechtert','mehr','schlimmer','erhöhung'],
+  wer:'Wer bereits einen Pflegegrad hat und mehr Hilfe braucht.',betrag:'höhere Leistungen je nach neuem Grad',
+  detail:'Verschlechtert sich der Gesundheitszustand, beantragen Sie eine Höherstufung. Der Ablauf gleicht dem Erstantrag: formloser Antrag, dann erneute Begutachtung.',
+  rec:'Ein Pflegetagebuch über 1–2 Wochen hilft, den gestiegenen Bedarf zu belegen. Im Zweifel beantragen – ein höherer Grad bringt deutlich mehr Geld.',antrag:'hoeher'},
+
+ {id:'widerspruch',ic:'⚖️',cat:'Nach Bewilligung',title:'Widerspruch gegen den Bescheid',
+  keys:['widerspruch','abgelehnt','zu niedrig','einspruch','ablehnung'],
+  wer:'Wer mit der Einstufung nicht einverstanden ist.',betrag:'—',
+  detail:'Gegen einen zu niedrigen Pflegegrad können Sie innerhalb eines Monats nach Erhalt des Bescheids schriftlich Widerspruch einlegen. Das Gutachten sollten Sie sich zusenden lassen und prüfen.',
+  rec:'Wir erstellen Ihnen ein Musterschreiben für den fristwahrenden Widerspruch. Für die inhaltliche Begründung im Einzelfall hilft die Verbraucherzentrale, ein Sozialverband (VdK, SoVD) oder ein Fachanwalt – das ist Rechtsberatung, die wir nicht leisten dürfen.',antrag:'widerspruch'},
+
+ {id:'rente',ic:'👵',cat:'Für Pflegende',title:'Rentenbeiträge für Pflegepersonen',
+  keys:['rente','rentenversicherung','pflegeperson','beiträge','altersvorsorge'],
+  wer:'Wer nicht erwerbsmäßig pflegt: mind. Pflegegrad 2, mind. 10 Std./Woche an mind. 2 Tagen, max. 30 Std. eigene Erwerbsarbeit.',betrag:'Rentenbeiträge zahlt die Pflegekasse',
+  detail:'Pflegende Angehörige bauen oft Lücken in der Rente auf. Wenn die Bedingungen erfüllt sind, zahlt die Pflegekasse Rentenbeiträge für die Pflegeperson – ein echter finanzieller Vorteil, den viele nicht kennen.',
+  rec:'Fragebogen zur „sozialen Absicherung der Pflegeperson" bei der Pflegekasse anfordern und ausfüllen. Das läuft separat vom Pflegegeld.',antrag:null},
+
+ {id:'pflegezeit',ic:'🗓️',cat:'Für Pflegende',title:'Pflegezeit & Pflegeunterstützungsgeld',
+  keys:['pflegezeit','familienpflegezeit','freistellung','job','arbeit','unterstützungsgeld','auszeit beruf'],
+  wer:'Berufstätige, die Angehörige pflegen.',betrag:'Lohnersatz bzw. Freistellung',
+  detail:'Bei akuter Pflegesituation können Sie sich bis zu 10 Arbeitstage freistellen lassen und erhalten Pflegeunterstützungsgeld als Lohnersatz. Für längere Pflege gibt es Pflegezeit (bis 6 Monate) und Familienpflegezeit (bis 24 Monate, teilweise).',
+  rec:'Pflegeunterstützungsgeld bei der Pflegekasse des Angehörigen beantragen. Freistellung rechtzeitig beim Arbeitgeber anmelden.',antrag:null},
+
+ {id:'steuer',ic:'🧾',cat:'Für Pflegende',title:'Steuervorteile',
+  keys:['steuer','pauschbetrag','absetzen','finanzamt','außergewöhnliche belastung'],
+  wer:'Pflegende und Pflegebedürftige.',betrag:'Pflege-Pauschbetrag 600 / 1.100 / 1.800 € pro Jahr (Grad 2 / 3 / 4–5)',
+  detail:'Pflegen Sie unentgeltlich, können Sie den Pflege-Pauschbetrag in der Steuererklärung geltend machen. Pflegekosten lassen sich zudem als außergewöhnliche Belastung oder haushaltsnahe Dienstleistung absetzen.',
+  rec:'Belege sammeln. Den Pauschbetrag tragen Sie in der Anlage „Außergewöhnliche Belastungen" ein. Bei Fragen hilft ein Lohnsteuerhilfeverein.',antrag:null},
+
+ {id:'fusspflege',ic:'🦶',cat:'Gesundheit',title:'Medizinische Fußpflege (Podologie)',
+  keys:['fußpflege','podologie','füße','diabetes','nägel','neuropathie'],
+  wer:'Bei Diabetes, Neuropathie oder Querschnittsyndrom – auf ärztliche Verordnung.',betrag:'Krankenkasse zahlt (10 € + 10 % Zuzahlung)',
+  detail:'Wichtig: Das läuft über die Kranken-, nicht die Pflegekasse. Bei krankhaften Fußschäden verordnet der Arzt ein Rezept; den staatlich geprüften Podologen suchen Sie sich selbst aus. Reine kosmetische Fußpflege zahlt die Kasse nicht.',
+  rec:'Beim Hausarzt oder Diabetologen nach einer podologischen Verordnung fragen, dann einen zugelassenen Podologen in der Nähe wählen.',antrag:null},
+
+ {id:'schwerbehinderung',ic:'🪪',cat:'Gesundheit',title:'Schwerbehindertenausweis',
+  keys:['schwerbehinderung','behindertenausweis','gdb','grad der behinderung','versorgungsamt','merkzeichen'],
+  wer:'Bei dauerhafter Beeinträchtigung – unabhängig vom Pflegegrad.',betrag:'Steuer-Pauschbeträge & Nachteilsausgleiche',
+  detail:'Der Grad der Behinderung (GdB) ist etwas anderes als der Pflegegrad und wird beim Versorgungsamt beantragt. Ab GdB 50 gibt es den Schwerbehindertenausweis mit Steuervorteilen, Vergünstigungen und ggf. mehr Urlaub.',
+  rec:'Lohnt sich oft zusätzlich zum Pflegegrad. Antrag beim Versorgungsamt/Landesamt – ärztliche Befunde beilegen.',antrag:null},
+
+ {id:'vorsorge',ic:'📄',cat:'Vorsorge',title:'Vollmacht & Patientenverfügung',
+  keys:['vollmacht','vorsorgevollmacht','patientenverfügung','betreuungsverfügung','vorsorge'],
+  wer:'Jede(r) – am besten, solange man noch selbst entscheiden kann.',betrag:'—',
+  detail:'Mit einer Vorsorgevollmacht bestimmen Sie, wer im Ernstfall für Sie entscheidet. Die Patientenverfügung legt medizinische Wünsche fest, die Betreuungsverfügung regelt eine eventuelle gerichtliche Betreuung.',
+  rec:'Unbedingt frühzeitig regeln. Kostenlose Vordrucke gibt es beim Bundesjustizministerium; für komplexe Fälle hilft ein Notar.',antrag:null},
+
+ {id:'stationaer',ic:'🏥',cat:'Im Heim',title:'Leistungen im Pflegeheim',
+  keys:['heim','pflegeheim','stationär','eigenanteil','vollstationär'],
+  wer:'Pflegegrad 2–5 bei vollstationärer Pflege.',betrag:'Zuschuss zum Eigenanteil, steigt mit der Pflegedauer',
+  detail:'Im Pflegeheim zahlt die Pflegekasse einen festen Betrag je Pflegegrad. Zusätzlich gibt es einen Leistungszuschlag zum pflegebedingten Eigenanteil, der mit jedem Jahr im Heim steigt.',
+  rec:'Reicht das Einkommen nicht für den Eigenanteil, prüfen Sie „Hilfe zur Pflege" beim Sozialamt. Lassen Sie sich die Heimkosten genau aufschlüsseln.',antrag:'leistung'}
+];
+
+const CATS=['Antrag','Geldleistung','Sachleistung','Zu Hause','Auszeit','Nach Bewilligung','Für Pflegende','Gesundheit','Vorsorge','Im Heim'];
+
+/* ====== Antragsschreiben ====== */
+/* Affiliate-Platzhalter – später durch echte Partner-/Affiliate-Links ersetzen */
+const AFFILIATE_BOX_URL='https://partner-platzhalter.de/pflegebox?ref=anihrerseite';
+const AFFILIATE_NOTRUF_URL='https://partner-platzhalter.de/hausnotruf?ref=anihrerseite';
+
+const FIELDS={
+  name:'Wie heißt die pflegebedürftige Person? (Vor- und Nachname)',
+  strasse:'Straße und Hausnummer?',
+  plzort:'PLZ und Ort?',
+  geb:'Geburtsdatum? (TT.MM.JJJJ)',
+  vnr:'Versichertennummer? (steht auf der Versichertenkarte)',
+  kasse:'Wie heißt Ihre Kranken-/Pflegekasse? (z. B. „TK", „AOK Bayern")',
+  grad:'Welcher Pflegegrad besteht aktuell? (1–5 oder „noch keiner")',
+  massnahme:'Welche Umbau-Maßnahme möchten Sie beantragen? (z. B. bodengleiche Dusche)',
+  bescheid:'Von welchem Datum ist der Bescheid, gegen den Sie Widerspruch einlegen? (TT.MM.JJJJ)'
+};
+function needFields(kind){
+  const base=['name','strasse','plzort','geb','vnr','kasse'];
+  if(kind==='pflegegrad')return base;
+  if(kind==='wohnumbau')return base.concat(['grad','massnahme']);
+  if(kind==='widerspruch')return base.concat(['bescheid']);
+  return base.concat(['grad']); /* leistung, hilfsmittel, hausnotruf, hoeher */
+}
+function letterFor(kind,p){
+  p=p||{};
+  const g=(f,ph)=>p[f]&&(''+p[f]).trim().length?(''+p[f]).trim():ph;
+  const heute=new Date().toLocaleDateString('de-DE',{day:'2-digit',month:'long',year:'numeric'});
+  const ort=((p.plzort||'')+'').replace(/^\s*\d{4,5}\s*/,'').trim()||'[Ort]';
+  const grad=g('grad','[Ihr Pflegegrad]');
+  const n=g('name','[Name der pflegebedürftigen Person]');
+  const kopf='An die Pflegekasse\n'+g('kasse','[Name Ihrer Kranken-/Pflegekasse]')+'\n\n'+ort+', den '+heute+'\n\n';
+  const fuss='\n\nVersichertennummer: '+g('vnr','[Ihre Versichertennummer]')+
+    '\nAnschrift: '+g('strasse','[Straße und Hausnummer]')+', '+g('plzort','[PLZ und Ort]')+
+    '\nGeburtsdatum: '+g('geb','[TT.MM.JJJJ]')+
+    '\n\nMit freundlichen Grüßen\n\n\n____________________________\n'+n;
+  const T={
+   pflegegrad:'Antrag auf Leistungen der Pflegeversicherung\n\nSehr geehrte Damen und Herren,\n\nhiermit beantrage ich, '+n+', Leistungen aus der gesetzlichen Pflegeversicherung und die Feststellung eines Pflegegrades. Ich bitte um Übersendung der Antragsunterlagen und um einen Termin zur Begutachtung durch den Medizinischen Dienst.\n\nZugleich beantrage ich – soweit zutreffend – Pflegegeld bzw. Pflegesachleistungen, den Entlastungsbetrag, zum Verbrauch bestimmte Pflegehilfsmittel sowie Verhinderungs- und Kurzzeitpflege.',
+   leistung:'Antrag auf Pflegeleistungen\n\nSehr geehrte Damen und Herren,\n\nfür '+n+' (Pflegegrad: '+grad+') beantrage ich hiermit die zustehenden Pflegeleistungen. Ich bitte um Mitteilung der erforderlichen Schritte und Formulare.',
+   hilfsmittel:'Antrag auf zum Verbrauch bestimmte Pflegehilfsmittel (§ 40 SGB XI)\n\nSehr geehrte Damen und Herren,\n\nfür '+n+' (Pflegegrad: '+grad+') beantrage ich die Kostenübernahme für zum Verbrauch bestimmte Pflegehilfsmittel in Höhe des monatlichen Höchstbetrags. Die Pflege erfolgt im häuslichen Umfeld.',
+   hausnotruf:'Antrag auf Kostenübernahme für ein Hausnotrufsystem (§ 40 SGB XI)\n\nSehr geehrte Damen und Herren,\n\nfür '+n+' (Pflegegrad: '+grad+') beantrage ich die Übernahme der Kosten für ein Hausnotrufsystem. Die Person ist zeitweise allein und benötigt im Notfall schnelle Hilfe.',
+   wohnumbau:'Antrag auf Zuschuss für wohnumfeldverbessernde Maßnahmen (§ 40 Abs. 4 SGB XI)\n\nSehr geehrte Damen und Herren,\n\nfür '+n+' (Pflegegrad: '+grad+') beantrage ich einen Zuschuss für folgende Maßnahme zur Verbesserung des Wohnumfelds: '+g('massnahme','[Maßnahme, z. B. bodengleiche Dusche]')+'. Ein Kostenvoranschlag ist beigefügt. Mit der Umsetzung wird erst nach Ihrer Zusage begonnen.',
+   hoeher:'Antrag auf Höherstufung des Pflegegrades\n\nSehr geehrte Damen und Herren,\n\nder Gesundheitszustand von '+n+' (aktueller Pflegegrad: '+grad+') hat sich verschlechtert; der Hilfebedarf ist deutlich gestiegen. Ich beantrage daher eine erneute Begutachtung und die Höherstufung des Pflegegrades.',
+   widerspruch:'Widerspruch gegen den Bescheid vom '+g('bescheid','[Datum des Bescheids]')+'\n\nSehr geehrte Damen und Herren,\n\ngegen Ihren o. g. Bescheid lege ich, '+n+', hiermit fristwahrend Widerspruch ein. Eine ausführliche Begründung reiche ich nach. Bitte übersenden Sie mir das vollständige Gutachten des Medizinischen Dienstes.'
+  };
+  return kopf+(T[kind]||T.leistung)+fuss;
+}
+
+/* ====== Chat-Engine ====== */
+const body=document.getElementById('chatBody');
+const bar=document.getElementById('bar');
+const textInput=document.getElementById('textInput');
+/* Eingaben werden im Objekt „profile" gesammelt (siehe unten) */
+
+function add(html,who){const b=document.createElement('div');b.className='bubble '+who;b.innerHTML=html;body.appendChild(b);body.scrollTop=body.scrollHeight;return b;}
+function addText(t,who){const b=document.createElement('div');b.className='bubble '+who;b.textContent=t;body.appendChild(b);body.scrollTop=body.scrollHeight;return b;}
+function chips(items,cls){const w=document.createElement('div');w.className='opts';items.forEach(it=>{const b=document.createElement('button');b.className='opt'+(cls?' '+cls:'');b.textContent=it.label;b.onclick=()=>{textInput.placeholder='';it.fn();};w.appendChild(b);});body.appendChild(w);body.scrollTop=body.scrollHeight;return w;}
+
+function welcome(){showMenu();}
+function showMenu(){
+  body.innerHTML='';
+  bar.style.width='8%';
+  add('<b>Hallo!</b> Ich finde mit Ihnen heraus, welche Pflegeleistungen Ihnen zustehen – und erstelle die passenden Anträge. Tippen Sie oben eine Frage ein oder starten Sie hier:','bot');
+  chips([
+    {label:'🧭 Geführter Pflege-Check',fn:guidedStart},
+    {label:'ℹ️ Pflegegrade erklärt',fn:explainGrades},
+    {label:'📂 Leistungen nach Thema',fn:browseMenu},
+    {label:'📋 Komplette Liste',fn:listAll}
+  ]);
+}
+function browseMenu(){
+  body.innerHTML='';
+  add('<b>Leistungen nach Thema</b> – wählen Sie einen Bereich:','bot');
+  chips(CATS.map(c=>({label:c,fn:()=>openCat(c)})),'cat');
+  chips([{label:'⬅︎ Zurück',fn:showMenu}]);
+}
+function openCat(cat){
+  body.innerHTML='';
+  const items=LEX.filter(l=>l.cat===cat);
+  add('<b>'+cat+'</b> – wählen Sie ein Thema:','bot');
+  chips(items.map(l=>({label:l.ic+' '+l.title,fn:()=>showTopic(l.id)})));
+  chips([{label:'⬅︎ Zurück',fn:browseMenu}]);
+}
+function listAll(){
+  body.innerHTML='';
+  add('<b>Alle Leistungen</b> – tippen Sie auf ein Thema:','bot');
+  chips(LEX.map(l=>({label:l.ic+' '+l.title,fn:()=>showTopic(l.id)})));
+  chips([{label:'⬅︎ Zurück',fn:showMenu}]);
+}
+/* ==== Pflegegrade erklärt ==== */
+const GRADES={
+ 1:{name:'Pflegegrad 1',pts:'12,5 bis unter 27 Punkte',bed:'Geringe Beeinträchtigung der Selbstständigkeit.',geld:'Kein Pflegegeld/keine Sachleistung. Aber: Entlastungsbetrag 131 €/Monat, gratis Pflegehilfsmittel-Box (bis 42 €), Zuschuss zu Hausnotruf und Wohnumbau, kostenlose Beratung.',lohnt:'Trotz fehlendem Pflegegeld lohnenswert – Sie sichern sich Entlastungsbetrag, gratis Hilfsmittel und Zuschüsse.'},
+ 2:{name:'Pflegegrad 2',pts:'27 bis unter 47,5 Punkte',bed:'Erhebliche Beeinträchtigung der Selbstständigkeit.',geld:'Pflegegeld 347 € oder Pflegesachleistung 796 €/Monat. Neu ab hier: Verhinderungs- & Kurzzeitpflege (3.539 €/Jahr), Tagespflege.',lohnt:'Der wichtigste Sprung: Ab Pflegegrad 2 gibt es erstmals Geld und die Auszeit-Leistungen für pflegende Angehörige.'},
+ 3:{name:'Pflegegrad 3',pts:'47,5 bis unter 70 Punkte',bed:'Schwere Beeinträchtigung der Selbstständigkeit.',geld:'Pflegegeld 599 € oder Pflegesachleistung 1.497 €/Monat.',lohnt:'Deutlich höhere Beträge. Bei Verschlechterung lohnt sich eine Höherstufung.'},
+ 4:{name:'Pflegegrad 4',pts:'70 bis unter 90 Punkte',bed:'Schwerste Beeinträchtigung der Selbstständigkeit.',geld:'Pflegegeld 800 € oder Pflegesachleistung 1.859 €/Monat.',lohnt:'Hoher Leistungsumfang – oft sinnvoll mit Tages-/Nachtpflege zu kombinieren.'},
+ 5:{name:'Pflegegrad 5',pts:'90 bis 100 Punkte',bed:'Schwerste Beeinträchtigung mit besonderen Anforderungen an die pflegerische Versorgung.',geld:'Pflegegeld 990 € oder Pflegesachleistung 2.299 €/Monat – die höchsten Leistungen.',lohnt:'Maximale Leistungen. Schöpfen Sie alle Zusatzleistungen (Hilfsmittel, Wohnumbau, Entlastung) voll aus.'}
+};
+function explainGrades(){
+  body.innerHTML='';bar.style.width='40%';
+  add('<h4>ℹ️ Die Pflegegrade erklärt</h4>'+
+    '<p>Der Pflegegrad (1–5) misst, wie selbstständig eine Person im Alltag noch ist. Ein Gutachter des Medizinischen Dienstes vergibt dafür Punkte (0–100) in sechs Bereichen: Mobilität, geistige &amp; kommunikative Fähigkeiten, Verhalten, Selbstversorgung, Umgang mit Krankheit/Therapie und Alltagsgestaltung. Je mehr Hilfe nötig ist, desto höher der Grad – und desto mehr Leistungen.</p>'+
+    '<div class="rec">📌 <b>Voraussetzung:</b> Die Beeinträchtigung muss dauerhaft sein, also voraussichtlich mindestens 6 Monate bestehen. Festgestellt wird sie durch die Begutachtung.</div>'+
+    '<p style="margin:.6em 0 0">Tippen Sie auf einen Pflegegrad für die Details:</p>','bot');
+  chips([1,2,3,4,5].map(n=>({label:'Pflegegrad '+n,fn:()=>showGrade(n)})));
+  chips([{label:'📝 Pflegegrad beantragen',fn:()=>makeLetter('pflegegrad','pflegegrad')},{label:'⬅︎ Zurück',fn:showMenu}]);
+}
+function showGrade(n){
+  const g=GRADES[n];if(!g)return;body.innerHTML='';
+  add('<h4>'+g.name+'</h4>'+
+    '<div class="kv"><b>Bedeutung:</b><span>'+g.bed+'</span></div>'+
+    '<div class="kv"><b>Punkte:</b><span>'+g.pts+'</span></div>'+
+    '<div class="kv"><b>Leistungen:</b><span>'+g.geld+'</span></div>'+
+    '<div class="rec">✅ <b>Was sich lohnt:</b> '+g.lohnt+'</div>','bot');
+  const others=[1,2,3,4,5].filter(x=>x!==n).map(x=>({label:'Pflegegrad '+x,fn:()=>showGrade(x)}));
+  chips(others);
+  chips([{label:'📝 Pflegegrad beantragen',fn:()=>makeLetter('pflegegrad','pflegegrad')},{label:'⬅︎ Übersicht',fn:explainGrades},{label:'📋 Menü',fn:showMenu}]);
+}
+/* bereits angeschaute/erledigte Themen */
+const done=new Set();
+/* sinnvolle Reihenfolge für Nächste-Schritte-Vorschläge (ohne Pflegebox & Hausnotruf – die kommen über die Sonderregel) */
+const NEXT_ORDER=['entlastung','verhinderung','pflegegeld','sach','hoeher','beratung','pflegekurs','rente','wohnumbau','tagespflege','pflegezeit','vorsorge','steuer','kurzzeit','dipa','schwerbehinderung','fusspflege','widerspruch','stationaer','pflegegrad'];
+/* aktueller Pflegegrad aus den bisherigen Angaben (Antrag oder geführter Check); -1 = unbekannt, 0 = keiner */
+function userGrade(){
+  let g=gradeNum(profile.grad);
+  if(g<0 && typeof guided==='object' && guided && guided.s) g=gradeEstimate(guided.s);
+  return g;
+}
+/* passt ein Thema zum bekannten Pflegegrad? (Pflegebox/Hausnotruf haben keine Mindeststufe) */
+function eligibleTopic(id){
+  const min=MIN_GRADE[id];
+  if(!min) return true;
+  const g=userGrade();
+  if(g<0) return true;        /* Grad unbekannt -> nicht ausschließen */
+  return g>=min;
+}
+function suggestNext(){
+  const picks=[];
+  /* Sonderregel: immer die Pflegebox vorschlagen – wenn schon erledigt, stattdessen den Hausnotruf */
+  if(!done.has('hilfsmittel'))picks.push('hilfsmittel');
+  else if(!done.has('hausnotruf'))picks.push('hausnotruf');
+  /* weitere passende, noch nicht erledigte Themen – damit es eine Auswahl gibt */
+  for(const id of NEXT_ORDER){
+    if(picks.length>=4)break;
+    if(done.has(id)||picks.includes(id))continue;
+    if(!eligibleTopic(id))continue;
+    picks.push(id);
+  }
+  if(picks.length<3){ /* Auffüllen, falls vieles schon erledigt */
+    for(const l of LEX){
+      if(picks.length>=3)break;
+      if(done.has(l.id)||picks.includes(l.id))continue;
+      if(!eligibleTopic(l.id))continue;
+      picks.push(l.id);
+    }
+  }
+  return picks.slice(0,4);
+}
+function suggestChips(){
+  const nx=suggestNext();
+  if(nx.length){
+    add('Womit möchten Sie weitermachen?','bot');
+    chips(nx.map(id=>{const t=LEX.find(x=>x.id===id);return{label:t.ic+' '+t.title,fn:()=>showTopic(id)};}));
+  }
+  chips([{label:'📋 Menü',fn:showMenu}]);
+}
+function showTopic(id){
+  const l=LEX.find(x=>x.id===id);if(!l)return;
+  body.innerHTML='';
+  bar.style.width='60%';
+  done.add(id);
+  let html='<h4>'+l.ic+' '+l.title+'</h4>'+
+    '<div class="kv"><b>Für wen:</b><span>'+l.wer+'</span></div>'+
+    '<div class="kv"><b>Höhe:</b><span>'+l.betrag+'</span></div>'+
+    '<p style="margin:.5em 0 0">'+l.detail+'</p>'+
+    '<div class="rec">✅ <b>Empfehlung:</b> '+l.rec+'</div>';
+  add(html,'bot');
+  const actions=[];
+  if(l.antrag) actions.push({label:'📝 Antrag erstellen',fn:()=>makeLetter(l.antrag,l.id)});
+  if(l.id==='hilfsmittel') actions.push({label:'📦 Box kostenlos bestellen →',fn:()=>goAffiliate(AFFILIATE_BOX_URL,'die Pflegehilfsmittel-Box')});
+  if(l.id==='hausnotruf') actions.push({label:'🔔 Hausnotruf bestellen →',fn:()=>goAffiliate(AFFILIATE_NOTRUF_URL,'den Hausnotruf')});
+  actions.push({label:'☎️ Ansprechpartner',fn:contactInfo});
+  actions.push({label:'📋 Menü',fn:showMenu});
+  chips(actions);
+  const nx=suggestNext();
+  if(nx.length){
+    add('Das könnte als Nächstes wichtig sein:','bot');
+    chips(nx.map(nid=>{const t=LEX.find(x=>x.id===nid);return{label:t.ic+' '+t.title,fn:()=>showTopic(nid)};}));
+  }
+}
+/* von den Übersichts-Kacheln: zum Assistenten scrollen und Thema öffnen */
+function goTopic(id){
+  document.getElementById('assistent').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>showTopic(id),500);
+}
+function makeLetter(kind,topicId){
+  addText('Antrag erstellen','user');
+  pendingLetter=kind;pendingTopic=topicId||null;
+  letterQueue=needFields(kind).filter(f=>!profile[f]);
+  if(letterQueue.length){
+    add('Ich stelle Ihnen ein paar kurze Fragen und trage die Antworten direkt in den Antrag ein. <span style="color:var(--muted)">Tippen Sie „weiter", wenn Sie etwas offenlassen möchten. Alles bleibt nur auf Ihrem Gerät.</span>','bot');
+  }
+  askNextField();
+}
+function askNextField(){
+  if(!letterQueue.length){awaitingField=null;finishLetter(pendingLetter,pendingTopic);return;}
+  const f=letterQueue[0];awaitingField=f;
+  const cur=profile[f]?' <span style="color:var(--muted)">(aktuell: '+profile[f]+')</span>':'';
+  add(FIELDS[f]+cur+' <span style="color:var(--muted)">(oder „weiter" zum '+(profile[f]?'Behalten':'Überspringen')+')</span>','bot');
+  textInput.focus();
+}
+const FIELD_LABELS={name:'Name',strasse:'Straße/Nr.',plzort:'PLZ und Ort',geb:'Geburtsdatum',vnr:'Versichertennr.',kasse:'Kasse',grad:'Pflegegrad',massnahme:'Maßnahme',bescheid:'Bescheid-Datum'};
+function correctMenu(kind,topicId){
+  addText('Angaben korrigieren','user');
+  pendingLetter=kind;pendingTopic=topicId;
+  add('Welche Angabe möchten Sie ändern? Tippen Sie darauf:','bot');
+  chips(needFields(kind).map(f=>({label:'✏️ '+FIELD_LABELS[f]+': '+(profile[f]||'(leer)'),fn:()=>{letterQueue=[f];askNextField();}})));
+  chips([{label:'✓ Passt so – Antrag erneut anzeigen',fn:()=>finishLetter(kind,topicId)}]);
+}
+/* Mindest-Pflegegrad je Leistung (per Themen-ID). Fehlt der Grad oder ist er zu niedrig, leiten wir zum Pflegegrad-Antrag. */
+const MIN_GRADE={pflegegeld:2,sach:2,kombi:2,verhinderung:2,kurzzeit:2,tagespflege:2,stationaer:2,hoeher:1};
+function gradeNum(s){
+  if(!s)return -1;                 /* keine Angabe / übersprungen */
+  s=(''+s).toLowerCase();
+  if(/kein|nein|ohne|noch nicht/.test(s))return 0;
+  const m=s.match(/[1-5]/);
+  return m?parseInt(m[0],10):-1;
+}
+function finishLetter(kind,topicId){
+  const min=MIN_GRADE[topicId];
+  const gn=gradeNum(profile.grad);
+  if(min && gn>=0 && gn<min){
+    const t=(LEX.find(x=>x.id===topicId)||{}).title||'Diese Leistung';
+    if(topicId==='hoeher'){
+      add('<div class="rec">ℹ️ <b>Hinweis:</b> Eine <b>Höherstufung</b> ist nur möglich, wenn bereits ein Pflegegrad besteht. Nach Ihrer Angabe haben Sie noch keinen. Stellen Sie daher zuerst einen <b>Erstantrag auf einen Pflegegrad</b>.</div>','bot');
+    }else{
+      add('<div class="rec">ℹ️ <b>Hinweis:</b> „'+t+'" gibt es erst <b>ab Pflegegrad '+min+'</b>. Mit Ihrer Angabe ('+(gn===0?'noch kein Pflegegrad':'Pflegegrad '+gn)+') steht Ihnen diese Leistung noch nicht zu. Sinnvoll ist, <b>zuerst einen Pflegegrad zu beantragen</b> – danach können Sie diese Leistung erhalten.</div>','bot');
+    }
+    chips([
+      {label:'📝 Jetzt Pflegegrad beantragen',fn:()=>makeLetter('pflegegrad','pflegegrad')},
+      {label:'Trotzdem dieses Schreiben anzeigen',fn:()=>renderLetter(kind,topicId)},
+      {label:'📚 Anderes Thema',fn:showMenu}
+    ]);
+    return;
+  }
+  renderLetter(kind,topicId);
+}
+function renderLetter(kind,topicId){
+  const txt=letterFor(kind,profile);
+  add('Hier ist Ihr fertiges Antragsschreiben – mit Ihren Angaben ausgefüllt. Bitte vor dem Absenden kurz prüfen:','bot');
+  const box=document.createElement('div');box.className='bubble bot';
+  const lb=document.createElement('div');lb.className='letterbox';lb.textContent=txt;
+  box.appendChild(lb);body.appendChild(box);
+  let fontMode='normal';
+  const w=document.createElement('div');w.className='inline-actions';
+  const p=document.createElement('button');p.className='opt';p.textContent='🖨️ Drucken / als PDF speichern';p.onclick=()=>printLetter(txt,fontMode);
+  const c=document.createElement('button');c.className='opt';c.textContent='📋 Text kopieren';c.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(txt);c.textContent='✓ Kopiert';};
+  const fbtn=document.createElement('button');fbtn.className='opt';fbtn.textContent='🔤 Schriftart wechseln';
+  fbtn.onclick=()=>{
+    fontMode = fontMode==='normal' ? 'serif' : (fontMode==='serif' ? 'mono' : 'normal');
+    lb.className='letterbox'+(fontMode==='normal'?'':' '+fontMode);
+    fbtn.textContent='🔤 Schrift: '+(fontMode==='normal'?'Standard':(fontMode==='serif'?'Brief (Serif)':'Schreibmaschine'));
+  };
+  w.append(p,c,fbtn);body.appendChild(w);
+  add('<b>Wohin damit?</b> An Ihre eigene Pflegekasse (sitzt bei Ihrer Krankenkasse). Adresse unbekannt? Tippen Sie auf „Meine Kasse finden".','bot');
+  chips([{label:'✏️ Angaben korrigieren',fn:()=>correctMenu(kind,topicId)},{label:'🔎 Meine Kasse finden',fn:openKassen}]);
+  if(topicId==='hilfsmittel')boxOffer();
+  else if(topicId==='hausnotruf')notrufOffer();
+  else suggestChips();
+  body.scrollTop=body.scrollHeight;
+}
+function boxOffer(){
+  add('<div class="rec">📦 <b>Noch ein Tipp:</b> Die <b>Pflegehilfsmittel-Box</b> ist für Sie <b>komplett gratis</b> – die Pflegekasse zahlt bis zu 42 € pro Monat. Unser Partner liefert sie monatlich nach Hause und rechnet direkt mit der Kasse ab.</div>','bot');
+  chips([{label:'📦 Box jetzt kostenlos anfordern →',fn:()=>goAffiliate(AFFILIATE_BOX_URL,'die Pflegehilfsmittel-Box')}]);
+  suggestChips();
+}
+function notrufOffer(){
+  add('<div class="rec">🔔 <b>Noch ein Tipp:</b> Der <b>Hausnotruf</b> wird als Pflegehilfsmittel <b>über die Pflegekasse abgerechnet</b> – mit anerkanntem Pflegegrad zahlt sie einen monatlichen Zuschuss. Möchten Sie einen geprüften Anbieter ansehen und das Gerät bestellen?</div>','bot');
+  chips([{label:'🔔 Hausnotruf-Anbieter ansehen →',fn:()=>goAffiliate(AFFILIATE_NOTRUF_URL,'den Hausnotruf')}]);
+  suggestChips();
+}
+function goAffiliate(url,label){
+  add('Alles klar – Sie werden zu unserem Partner für '+label+' weitergeleitet. <span style="color:var(--muted)">(Platzhalter-Link – wird später durch Ihren echten Affiliate-Link ersetzt.)</span>','bot');
+  window.open(url,'_blank','noopener');
+}
+function printLetter(txt,mode){
+  const fam = mode==='mono' ? 'ui-monospace,Menlo,monospace'
+            : mode==='serif' ? 'Georgia,\'Times New Roman\',serif'
+            : '-apple-system,Arial,sans-serif';
+  const w=window.open('','_print');
+  w.document.write('<pre style="font-family:'+fam+';font-size:15px;white-space:pre-wrap;padding:30px;line-height:1.6">'+txt.replace(/</g,'&lt;')+'</pre>');
+  w.document.close();w.focus();w.print();
+}
+function contactInfo(){
+  body.innerHTML='';
+  add('<h4>☎️ An wen Sie sich wenden</h4>'+
+   '<p><b>Ihre Pflegekasse</b> (wichtigste Stelle): sitzt bei Ihrer Krankenkasse. Dorthin gehen alle Anträge. Tippen Sie unten auf „Meine Kasse finden", um Telefon, E-Mail und Postadresse zu sehen.</p>'+
+   '<div class="kv"><b>Bürgertelefon:</b><span>030 340 60 66 – 02 (Mo–Mi 8–16, Do 8–18, Fr 8–12 Uhr)</span></div>'+
+   '<div class="kv"><b>Vor Ort:</b><span>Pflegestützpunkt in Ihrer Stadt – kostenlose, unabhängige Beratung</span></div>','bot');
+  chips([{label:'🔎 Meine Kasse finden',fn:openKassen},{label:'📚 Zurück zum Menü',fn:showMenu}]);
+}
+
+/* ---- geführter Check (kompakt) ---- */
+let guided=null;
+const GQ=[
+ {k:'ort',q:'Wo wird gepflegt – oder soll gepflegt werden?',o:['Zu Hause','Im Pflegeheim','Noch unklar']},
+ {k:'grad',q:'Besteht schon ein Pflegegrad?',o:['Nein, noch keiner','Ja','Weiß ich nicht']},
+ {k:'gradnum',q:'Welcher Pflegegrad?',o:['Pflegegrad 1','Pflegegrad 2','Pflegegrad 3','Pflegegrad 4','Pflegegrad 5'],if:s=>s.grad==='Ja'},
+ {k:'mob',q:'Wie selbstständig bewegt sich die Person (Aufstehen, Gehen)?',o:['Weitgehend','Mit etwas Hilfe','Nur mit viel Hilfe','Kaum/gar nicht'],if:s=>s.grad!=='Ja'},
+ {k:'selbst',q:'Wie ist es bei Waschen, Anziehen, Essen?',o:['Selbstständig','Teilweise Hilfe','Viel Hilfe','Komplett auf Hilfe angewiesen'],if:s=>s.grad!=='Ja'},
+ {k:'kogn',q:'Probleme mit Gedächtnis/Orientierung (z. B. Demenz)?',o:['Keine','Leichte','Deutliche','Schwere'],if:s=>s.grad!=='Ja'},
+ {k:'wer',q:'Wer pflegt überwiegend?',o:['Angehörige','Ein Pflegedienst','Beides','Noch unklar']}
+];
+function guidedStart(){body.innerHTML='';guided={s:{},i:0,hist:[]};guidedStep();}
+function guidedBack(){
+  if(guided&&guided.hist&&guided.hist.length){guided.i=guided.hist.pop();guidedStep();}
+  else showMenu();
+}
+function guidedStep(){
+  while(guided.i<GQ.length&&GQ[guided.i].if&&!GQ[guided.i].if(guided.s))guided.i++;
+  if(guided.i>=GQ.length){guidedResult();return;}
+  body.innerHTML='';
+  const q=GQ[guided.i];bar.style.width=(15+guided.i/GQ.length*45)+'%';
+  add('<b>Geführter Pflege-Check</b>','bot');
+  add(q.q,'bot');
+  chips(q.o.map(o=>({label:o,fn:()=>{guided.s[q.k]=o;guided.hist.push(guided.i);guided.i++;guidedStep();}})));
+  chips([{label:'⬅︎ Zurück',fn:guidedBack}]);
+}
+function gradeEstimate(s){
+  if(s.grad==='Ja'&&s.gradnum)return parseInt(s.gradnum.replace(/\D/g,''),10);
+  const m={mob:['Weitgehend','Mit etwas Hilfe','Nur mit viel Hilfe','Kaum/gar nicht'],
+    selbst:['Selbstständig','Teilweise Hilfe','Viel Hilfe','Komplett auf Hilfe angewiesen'],
+    kogn:['Keine','Leichte','Deutliche','Schwere']};
+  let sc=0;for(const k in m){const i=m[k].indexOf(s[k]);if(i>0)sc+=i;}
+  if(sc<=1)return 0;if(sc<=3)return 2;if(sc<=6)return 3;if(sc<=8)return 4;return 5;
+}
+function guidedResult(){
+  const s=guided.s,g=gradeEstimate(s),known=s.grad==='Ja',home=s.ort!=='Im Pflegeheim',eff=g===0?2:g;
+  body.innerHTML='';
+  bar.style.width='100%';
+  add(known?'Sie haben <b>Pflegegrad '+g+'</b> angegeben.':
+     (g===0?'Nach Ihren Angaben ist ein Pflegegrad nicht sicher – ein Antrag kann sich aber lohnen, da nur die Begutachtung entscheidet.':
+     'Grobe Orientierung: etwa <b>Pflegegrad '+g+'</b>. Verbindlich entscheidet der Medizinische Dienst.'),'bot');
+  const rec=[];
+  if(home){
+    if(s.wer==='Ein Pflegedienst')rec.push('sach');
+    else if(s.wer==='Beides')rec.push('kombi');
+    else rec.push('pflegegeld');
+    rec.push('entlastung','hilfsmittel');
+    if(eff>=2)rec.push('verhinderung');
+    rec.push('wohnumbau');
+  }else if(s.ort==='Im Pflegeheim'){rec.push('stationaer','hilfsmittel');}
+  else{rec.push('pflegegrad','entlastung');}
+  add('<b>Das sollten Sie beantragen</b> – tippen Sie für Details & Antrag:','bot');
+  chips(rec.map(id=>{const l=LEX.find(x=>x.id===id);return{label:l.ic+' '+l.title,fn:()=>showTopic(id)};}));
+  add('Und so geht es weiter:','bot');
+  chips([
+    {label:'📝 Erstantrag erstellen',fn:()=>makeLetter('pflegegrad')},
+    {label:'📚 Alle Leistungen',fn:listAll},
+    {label:'☎️ Ansprechpartner',fn:contactInfo}
+  ]);
+}
+
+/* ---- Freitext & Antrag-Intake ---- */
+let pendingLetter=null,pendingTopic=null,awaitingField=null,letterQueue=[];
+const profile={};
+function handleText(){
+  textInput.placeholder='';
+  if(awaitingField){
+    const v=textInput.value.trim();textInput.value='';
+    const f=awaitingField;awaitingField=null;
+    if(v&&v.toLowerCase()!=='weiter'){profile[f]=v;addText(v,'user');}
+    else addText('(später ausfüllen)','user');
+    letterQueue.shift();
+    askNextField();
+    return;
+  }
+  const t=textInput.value.trim();if(!t)return;textInput.value='';
+  addText(t,'user');
+  const q=t.toLowerCase();
+  if(/pflegestufe|pflegegrade|welche.*grad|welcher.*grad|unterschied.*grad|grad.*unterschied|pflegegrad.*erkl|stufen/.test(q)){explainGrades();return;}
+  // Treffer im Lexikon suchen
+  let hit=LEX.find(l=>l.keys.some(k=>q.includes(k))||q.includes(l.title.toLowerCase()));
+  if(!hit){
+    const scored=LEX.map(l=>({l,n:l.keys.filter(k=>k.split(' ').some(w=>q.includes(w))).length})).sort((a,b)=>b.n-a.n);
+    if(scored[0].n>0)hit=scored[0].l;
+  }
+  if(/kontakt|wohin|telefon|email|e-mail|anrufen|adresse|wenden/.test(q)){contactInfo();return;}
+  if(hit){showTopic(hit.id);}
+  else{
+    add('Dazu habe ich kein genaues Stichwort gefunden. Wählen Sie ein Thema – ich erkläre es Ihnen gern:','bot');
+    showMenu();
+  }
+}
+document.getElementById('sendBtn').onclick=handleText;
+textInput.addEventListener('keydown',e=>{if(e.key==='Enter')handleText();});
+welcome();
+</script>
+</body>
+</html>
